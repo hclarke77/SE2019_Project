@@ -1,29 +1,35 @@
-import java.io.*;
-import java.util.*;
-import java.lang.*;
-
 public class Clock {
 	
-	/*Returns the current value of the system timer, in nanoseconds
-      System.out.print("time in nanoseconds = ");
-      System.out.println(System.nanoTime());*/
-	long StartTime;
-	long EndTime;
-	long TimeSum = 0;
-	long Avg;
+	double starTime;
+	double endTime;
+	double time;
+	double averageTime;
 	
-//Calculates the difference between the start time and the end time of a message
-	public long TimeDiff(long STime, long ETime) {
-		long TotalTime = ETime - STime;
-		return TotalTime;
+	
+	//calculate one message time
+	public double calcuTime(double starTime, double endTime) 
+	{
+
+		time = starTime - endTime;
+		
+		return time;
 	}
 	
-//Caclulates the average time from an array of time differences
-	public long avgTime (int[] ArrTimes){
-		for (int i = 0; i < ArrTimes.length; i++){
-			TimeSum = TimeSum + ArrTimes[i];
-			Avg = TimeSum / i;
+	
+	//calculate average time
+	public double calcuAverageTime(double[] arrayTime)
+	{
+		double totalTime=0;
+
+		for( int i = 0; i < arrayTime.length; i++ )
+		{
+			totalTime = totalTime + arrayTime[i];
+			
 		}
-		return Avg;
+		
+		averageTime = totalTime / arrayTime.length;
+		
+		return averageTime;
 	}
+
 }
