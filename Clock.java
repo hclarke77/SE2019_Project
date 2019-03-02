@@ -1,6 +1,10 @@
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+
 public class Clock {
 	
-	double starTime;
+	double startTime;
 	double endTime;
 	double time;
 	double averageTime;
@@ -10,7 +14,7 @@ public class Clock {
 	public double calcuTime(double starTime, double endTime) 
 	{
 
-		time = starTime - endTime;
+		time = startTime - endTime;
 		
 		return time;
 	}
