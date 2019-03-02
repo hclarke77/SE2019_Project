@@ -17,10 +17,15 @@ public class Simulation {
 	  //Gets the date and time values from the csv File
 	  Buffer ListTimes = new Buffer(reader);
 	  ListTimes.loadTimesBuffer(reader);
+	  List<String> ltimes = ListTimes.loadTimesBuffer(reader);
+	  System.out.println("Times: ");
+	  System.out.println(ltimes);
 	  
 	  //Gets the rate values from the csv File
 	  Buffer ListRates = new Buffer(reader);
-	  ListRates.loadRatesBuffer(reader);
+	  List<String> lrates = ListRates.loadRatesBuffer(reader);
+	  System.out.println("Rates: ");
+	  System.out.println(lrates);
 	  
 	  //ProccesingUnit(double speed, Buffer B)
 	  
