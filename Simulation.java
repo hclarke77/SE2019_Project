@@ -29,7 +29,6 @@ public class Simulation {
 	  
 	  //ProccesingUnit(double speed, Buffer B)
 	  
-		
   }
 
 }
