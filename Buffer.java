@@ -4,13 +4,11 @@ import java.util.*;
 
 public class Buffer {
 
-    int size;
-    List<String> rates,times;
+    csvReader rates,times;
     
     
-    public Buffer(int s, List<String> r) {
+    public Buffer(csvReader r) {
         
-        size = s;
         rates = r;     
     }
          
@@ -18,9 +16,16 @@ public class Buffer {
     
         List<List<String>> times;
         
+        List<String> newBuffer = new ArrayList<>();
+        
         times = reader.exportVariables();
         
-        List<String> newBuffer = times.get(0);
+        for(int i =1; i < times.size(); i++){
+        
+			List<String> free = times.get(i);
+			
+			newBuffer.add(free.get(0));
+		}
         
         return newBuffer;
         
@@ -31,9 +36,17 @@ public class Buffer {
     
         List<List<String>> rates;
         
+        List<String> newBuffer = new ArrayList<>();
+        
         rates = reader.exportVariables();
         
-        List<String> newBuffer = rates.get(1);
+        for(int i =1; i < rates.size(); i++){
+        
+			List<String> free = rates.get(i);
+			
+			newBuffer.add(free.get(1));
+		}
+
         
         return newBuffer;
         
