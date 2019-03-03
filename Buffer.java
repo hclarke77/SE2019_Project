@@ -1,16 +1,14 @@
 import java.io.*;
 import java.util.*;
-
+import java.lang.*;
 
 public class Buffer {
 
+    csvReader rates,times;
     int size;
-    List<String> rates,times;
     
-    
-    public Buffer(int s, List<String> r) {
+    public Buffer(csvReader r) {
         
-        size = s;
         rates = r;     
     }
          
@@ -38,4 +36,25 @@ public class Buffer {
         return newBuffer;
         
         }
+        
+        
+    public int getSize(List<String> listRates) {
+    
+        int cnt = listRates.size();
+        
+        return cnt;
+        
+        }
+        
+        
+    public double getRate(List<String> listRates, int index) {
+    
+        String retString = listRates.get(index);
+        
+        double value = Double.parseDouble(retString);
+        
+        return value;
+        
+        }
+        
 }
