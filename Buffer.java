@@ -12,11 +12,11 @@ public class Buffer {
         rates = r;     
     }
          
-    public List<String> loadTimesBuffer(csvReader reader) {
+    public List<String> loadTimesBuffer(csvReader reader, String Filename) {
     
         List<List<String>> times;
         
-        times = reader.exportVariables();
+        times = reader.exportVariables(Filename);
         
         List<String> newBuffer = times.get(0);
         
@@ -25,11 +25,11 @@ public class Buffer {
         }
     
          
-    public List<String> loadRatesBuffer(csvReader reader) {
+    public List<String> loadRatesBuffer(csvReader reader, String Filename) {
     
         List<List<String>> rates;
         
-        rates = reader.exportVariables();
+        rates = reader.exportVariables(Filename);
         
         List<String> newBuffer = rates.get(1);
         
@@ -47,13 +47,12 @@ public class Buffer {
         }
         
         
-    public double getRate(List<String> listRates, int index) {
+    public String getRate(List<String> listRates, int index) {
     
+        
         String retString = listRates.get(index);
         
-        double value = Double.parseDouble(retString);
-        
-        return value;
+        return retString;
         
         }
         

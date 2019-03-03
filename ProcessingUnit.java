@@ -16,19 +16,17 @@ public class ProcessingUnit {
         
         }
         
-     public List<Double> processRates(double processorSpeed, Buffer rateBuffer, csvReader rateReader) {
+     public List<Double> processRates(double processorSpeed, Buffer rateBuffer, csvReader rateReader, String Filename) {
      
         List<Double> rateTimes = new ArrayList<>();
         
-        List<String> numRates = rateBuffer.loadRatesBuffer(rateReader);
+        List<String> numRates = rateBuffer.loadRatesBuffer(rateReader, Filename);
         
-        for (int i = 0;  i < rateBuffer.getSize(numRates)-1; i++) {
+        for (int i = 1;  i < rateBuffer.getSize(numRates); i++) {
         
-            int mult = i+1;
-        
-            double place = Integer.valueOf(mult);
+            double place = Integer.valueOf(i);
             
-            double rate = rateBuffer.getRate(numRates, i);
+            double rate = Double.parseDouble(rateBuffer.getRate(numRates, i));
             
             double calc = place*rate;
             
