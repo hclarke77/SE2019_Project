@@ -16,16 +16,16 @@ public class Simulation {
 	  
 	  //Gets the date and time values from the csv File
 	  Buffer ListTimesRates = new Buffer(reader);
-	  List<String> ltimes = ListTimesRates.loadTimesBuffer(reader, Filename);
+	  List<String> ltimes = ListTimesRates.loadTimesBuffer();
 	  //Gets the rate values from the csv File
-	  List<String> lrates = ListTimesRates.loadRatesBuffer(reader, Filename);
+	  List<String> lrates = ListTimesRates.loadRatesBuffer();
 	  
 	  //ProccesingUnit(double speed, Buffer B, csvReader c)
-	 // ProcessingUnit rateProcessor = new ProcessingUnit(2.00,ListRates,reader);
-	  //rateProcessor.processRates(2.00,ListRates,reader);
+	  ProcessingUnit rateProcessor = new ProcessingUnit(2,ListTimesRates,reader);
+	  List<Double> dubs = rateProcessor.processRates();
 	  
 	  
-	  for (int i = 1; i < ListTimesRates.getSize(lrates); i++) {
+	  for (int i = 0; i < dubs.size(); i++) {
 	  
             System.out.println(ListTimesRates.getRate(lrates,i));
             
