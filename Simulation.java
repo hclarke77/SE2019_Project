@@ -25,9 +25,9 @@ public class Simulation {
 	  List<Double> dubs = rateProcessor.processRates();
 	  
 	  
-	  for (int i = 0; i < dubs.size(); i++) {
+	  for (int i = 0; i < lrates.size() ; i++) {
 	  
-            System.out.println(ListTimesRates.getRate(lrates,i));
+            System.out.println(lrates);
             
             
         }
