@@ -17,12 +17,15 @@ public class csvReader {
         return csvFilename;
     }
     
+    
     public List<List<String>> exportVariables() {           
             
         List<List<String>> records = new ArrayList<>();
         try (Scanner scanner = new Scanner(new File(csvFilename));) {
             while (scanner.hasNextLine()) {
+		//String line = scanner.nextLine();
                 records.add(getRecordFromLine(scanner.nextLine()));
+                
             }
             
             return records;

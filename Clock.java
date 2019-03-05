@@ -4,34 +4,46 @@ import java.lang.*;
 
 public class Clock {
 	
-	double startTime;
-	double endTime;
-	double time;
+	
 	double averageTime;
+	double speed;
+	List<Double> times;
 	
+	public Clock(double s, List<Double> t){
+	  
+	  speed = s;
+	  times = t;
 	
-	//calculate one message time
-	public double calcuTime(double starTime, double endTime) 
-	{
-
-		time = startTime - endTime;
-		
-		return time;
 	}
 	
 	
-	//calculate average time
-	public double calcuAverageTime(double[] arrayTime)
+	//calculate one message time
+	public void wait(double speedup) 
 	{
-		double totalTime=0;
+	  
+	  for (int i=0; i<times.size(); i++) {
+	  
+	      wait(speedup*times.get(i)/1000000000);
+	  }
+	}
+	
+	public Double calcuThroughput()
+	{
+		double totalTime = 0;
 
-		for( int i = 0; i < arrayTime.length; i++ )
+		for( int i = 0; i < times.size(); i++ )
 		{
-			totalTime = totalTime + arrayTime[i];
+			totalTime = totalTime + times.get(i);
 			
 		}
 		
-		averageTime = totalTime / arrayTime.length;
+		return totalTime;
+	}
+
+	//calculate average time
+	public Double calcuLatency()
+	{
+		double averageTime = calcuThroughput()/times.size();
 		
 		return averageTime;
 	}

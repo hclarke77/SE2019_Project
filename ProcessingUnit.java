@@ -6,13 +6,11 @@ public class ProcessingUnit {
     List<Double> rates;
     double speed;
     Buffer buffer;
-    csvReader reader;
     
-    public ProcessingUnit(double s, Buffer b, csvReader c) {
+    public ProcessingUnit(double s, Buffer b) {
     
         speed = s;
         buffer = b;
-        reader = c;
         
         }
         
@@ -20,17 +18,18 @@ public class ProcessingUnit {
      
         List<Double> rateTimes = new ArrayList<>();
         
+        
         List<String> numRates = buffer.loadRatesBuffer();
         
-        for (int i = 1;  i < buffer.getSize(numRates); i++) {
+        for (int i = 1;  i < numRates.size(); i++) {
         
-            double place = Integer.valueOf(i);
+            //double place = Integer.valueOf(i);
             
-            double rate = Double.parseDouble(buffer.getRate(numRates, i));
+            double rate = Double.parseDouble(numRates.get(i));
             
-            double calc = place*rate;
+           // double calc = place*rate;
             
-            rateTimes.add(calc);
+            rateTimes.add(rate*60);
             
             }
             
