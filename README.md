@@ -4,12 +4,10 @@ This Github is for the Software Engineering 2019 Spring Project
 
 Build Instructions:
 
-java *.java
+javac *.java
 
 
 
 Run Instructions:
 
 java Simulation
-
-
