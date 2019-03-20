@@ -1,0 +1,32 @@
+Buffer Class:
+
+-Creates a Buffer with specified size to hold messages
+
+
+Clock Class:
+
+-Creates the clock being used for the Simulation
+-Creates completely different clock from System Clock.
+
+
+Simulation Class:
+
+-Main Class that runs entire codebase
+-Uses buffer class, csvReader class and Clock Class
+
+
+Processing Unit Class:
+
+-No idea
+-Calculates Latency and Throughput????
+
+
+CSV Reader Class:
+-Reads CSV and parses into Array to be used for Data.
+
+
+Message Class:
+
+-To Be created
+-Needs to represent each message
+-stores input time into the system and time outputted from System
