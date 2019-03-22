@@ -30,3 +30,10 @@ Message Class:
 -To Be created
 -Needs to represent each message
 -stores input time into the system and time outputted from System
+
+
+Questions for Professor Holdener:
+
+1. Running simulation Questions
+2. Do we need a GUI
+3. Better method for tracking latency.
