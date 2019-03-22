@@ -35,5 +35,9 @@ Message Class:
 Questions for Professor Holdener:
 
 1. Running simulation Questions
+  - Inputting messages every nanosecond
+  - Need a message Class
+  - keep track of messages dropped if they don't fit in buffer when it checks
 2. Do we need a GUI
 3. Better method for tracking latency.
+4. Test Plan - Require Unit Tests?
