@@ -7,9 +7,11 @@ public class Buffer {
     List<List<String>> ratesTimes;
     int size;
 
-    public Buffer(List<List<String>> r) {
+    public Buffer(List<List<String>> r, int s) {
 
         ratesTimes = r;
+        size = s;
+        
     }
 
     public List<String> loadTimesBuffer() {
