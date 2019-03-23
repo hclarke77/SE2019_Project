@@ -6,7 +6,7 @@ public class Simulation {
 
 
   public static void main(String[] args) {
-  
+
 	  int bufferSize = args[0];
 	  double processSpeed = args[1];
 	  //Asks user for file name they wish to simulate
@@ -29,26 +29,40 @@ public class Simulation {
 	  //Gets the rate values from the csv File
 	  List<String> lrates = ListTimesRates.loadRatesBuffer();
 	  List<Message> listMessage = new ArrayList<>();
-	 
+
 	 //create messages
-	  for (int i=0; i < ListTimesRates.getSize(); i++) {
-	  
+	  for (int i=0; i < ListTimesRates.size(); i++) {
+
 	    listMessage.add(new Message());
-	    
-	    }
-	  
+
+	  }
+
+
+    long simStartTime = System.nanoTime();
+
+    /*
+
+    if travelArray.size() % 2 == 1 {
+      index = travelArray.size() // 2 + 1;
+    } else {
+      index = travelArray.size() / 2;
+    }
+
+    */
+
+
+
+
 	  //calculate total travel
-	  double totalTime; 
-	  for(int j=0; j < ListTimesRates.getSize(); j++) {
-	  
-	    double travel = listMessage[j];
-	    
+	  double totalTime;
+	  for(int j=0; j < ListTimesRates.size(); j++) {
+
+	    double travel = listMessage[j].calculateTravel;
+
 	    totalTime += travel;
-	    }
-	    
-	    
-	    
-	    
+
+    }
+
 
 	  //ProccesingUnit(double speed, Buffer B)
 	  ProcessingUnit rateProcessor = new ProcessingUnit(2,ListTimesRates);
