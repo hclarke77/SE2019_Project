@@ -6,8 +6,6 @@ Build Instructions:
 
 javac *.java
 
-
-
 Run Instructions:
 
-java Simulation
+java Simulation bufferSize processorSpeed
