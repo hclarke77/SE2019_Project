@@ -15,18 +15,9 @@ public class Clock {
 	  endTime = 0;
 	}
 
-	public long StartTime(){
-		startTime = System.nanoTime();
-		return startTime;
-	}
-
-	public long CurrentTime(){
+	public long currentTime(){
 		currTime = System.nanoTime();
 		return currTime;
 	}
 
-	public long EndTime(){
-		endTime = System.nanoTime();
-		return endTime;
-		}
 }

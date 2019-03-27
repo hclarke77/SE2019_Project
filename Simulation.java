@@ -31,47 +31,54 @@ public class Simulation {
     List<Message> listMessage = new ArrayList<>(bufferSize);
     //need to figure out loss rate from this.
 
+    //initialize clock object
+    Clock simulClock = new Clock();
+
     //start of simulation
-    while()
-	  for (int i=0; i < listMessage.get(z); i++) {
-	    listMessage.add(new Message());
-	  }
+    while(!listMessage.isEmpty()){
+      int z=0;
+      int messagesCreated = listMessage.get(z);
+      z = z++;
+  	  for (int i=0; i < messagesCreated; i++) {
+  	    listMessage.add(new Message());
+  	  }
 
-    long simStartTime = System.nanoTime();
 
-    /*
 
-    if travelArray.size() % 2 == 1 {
-      index = travelArray.size() // 2 + 1;
-    } else {
-      index = travelArray.size() / 2;
+      /*
+
+      if travelArray.size() % 2 == 1 {
+        index = travelArray.size() // 2 + 1;
+      } else {
+        index = travelArray.size() / 2;
+      }
+
+      */
+
+  	  //calculate total travel
+  	  double totalTime;
+  	  for(int j=0; j < ListTimesRates.size(); j++) {
+
+  	    double travel = listMessage.get(j).calculateTravel;
+
+  	    totalTime += travel;
+
+      }
+
+
+
+
+      /* DO NOT NEED AT THE MOMENT.
+  	  //ProccesingUnit(double speed, Buffer B)
+  	  ProcessingUnit rateProcessor = new ProcessingUnit(2,ListTimesRates);
+  	  List<Double> dubs = rateProcessor.processRates();
+            Clock ctimes = new Clock(1,dubs);
+            //Long waitTime = 1000000000;
+            //ctimes.waitFor(waitTime);
+            System.out.println("Latency: ");
+            System.out.println(ctimes.calcuLatency().toString());
+            System.out.println("Throughput: ");
+  	  System.out.println(ctimes.calcuThroughput().toString());*/
     }
-
-    */
-
-	  //calculate total travel
-	  double totalTime;
-	  for(int j=0; j < ListTimesRates.size(); j++) {
-
-	    double travel = listMessage.get(j).calculateTravel;
-
-	    totalTime += travel;
-
-    }
-
-
-
-
-    /* DO NOT NEED AT THE MOMENT.
-	  //ProccesingUnit(double speed, Buffer B)
-	  ProcessingUnit rateProcessor = new ProcessingUnit(2,ListTimesRates);
-	  List<Double> dubs = rateProcessor.processRates();
-          Clock ctimes = new Clock(1,dubs);
-          //Long waitTime = 1000000000;
-          //ctimes.waitFor(waitTime);
-          System.out.println("Latency: ");
-          System.out.println(ctimes.calcuLatency().toString());
-          System.out.println("Throughput: ");
-	  System.out.println(ctimes.calcuThroughput().toString());*/
 }
 }
