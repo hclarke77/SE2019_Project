@@ -22,34 +22,21 @@ public class Simulation {
     //stores list of rates - one minute after another
 	  List<Integer> ratesList = reader.exportVariables();
 
-    //testing if it got all values.
-	 /* for (int i=0; i<vars.size();i++) {
-
+    /*testing if it got all values
+	  for (int i=0; i<vars.size();i++) {
 	    System.out.println(vars.get(i));
+	  }*/
 
-	  }
-	  */
-
-    /* DO NOT NEED AT all
-	  //Gets the date and time values from the csv File
-	  Buffer ListTimesRates = new Buffer(vars);
-	  //Gets the rate values from the csv File
-	  List<String> lrates = ListTimesRates.loadRatesBuffer();
-    DO NOT NEED */
-
-
-
-
-    //NEED THIS
     //list to store messages.
-    List<Message> listMessage = new ArrayList<>();
+    List<Message> listMessage = new ArrayList<>(bufferSize);
+    //need to figure out loss rate from this.
 
-	 //create messages
-	  for (int i=0; i < ListTimesRates.size(); i++) {
-
+    //start of simulation
+    while()
+	  for (int i=0; i < listMessage.get(z); i++) {
 	    listMessage.add(new Message());
-
 	  }
+
     long simStartTime = System.nanoTime();
 
     /*
@@ -66,11 +53,14 @@ public class Simulation {
 	  double totalTime;
 	  for(int j=0; j < ListTimesRates.size(); j++) {
 
-	    double travel = listMessage[j].calculateTravel;
+	    double travel = listMessage.get(j).calculateTravel;
 
 	    totalTime += travel;
 
     }
+
+
+
 
     /* DO NOT NEED AT THE MOMENT.
 	  //ProccesingUnit(double speed, Buffer B)
