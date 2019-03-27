@@ -16,18 +16,20 @@ public class csvReader {
     }
     
     
-    public List<List<String>> exportVariables() {           
+    public List<Integer> exportVariables() {           
             
-        List<List<String>> records = new ArrayList<>();
+        List<Integer> records = new ArrayList<>();
         try (Scanner scanner = new Scanner(new File(csvFilename));) {
             while (scanner.hasNextLine()) {
 		//String line = scanner.nextLine();
-                records.add(getRecordFromLine(scanner.nextLine()));
+                records.add(Integer.valueOf(getRecordFromLine(scanner.nextLine()).get(1)));
                 
             }
             
             return records;
         } catch (FileNotFoundException e) {
+        
+        System.out.println(records.get(0));
         
         return records;
 	}
