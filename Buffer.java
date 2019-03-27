@@ -11,7 +11,7 @@ public class Buffer {
 
         ratesTimes = r;
         size = s;
-        
+
     }
 
     public List<String> loadTimesBuffer() {
@@ -59,7 +59,6 @@ public class Buffer {
 
 
     public String getRate(List<String> listRates, int index) {
-
 
         String retString = listRates.get(index);
 
