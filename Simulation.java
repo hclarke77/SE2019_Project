@@ -38,10 +38,20 @@ public class Simulation {
     while(!listMessage.isEmpty()){
       int z=0;
       int messagesCreated = listMessage.get(z);
+      if (messagesCreated < 1000000) {
+        int messagesPerMilli 
+      }
+      int messagesPerNano = ((messagesCreated / 1000000) + (messagesCreated % 1000000));
       z = z++;
-  	  for (int i=0; i < messagesCreated; i++) {
-  	    listMessage.add(new Message());
-  	  }
+
+      for (int j=0; j<1000000; j++) {
+
+  	     for (int i=0; i < messagesCreated; i++) {
+  	        listMessage.add(new Message());
+  	     }
+         clock.wa
+      }
+
 
 
 
