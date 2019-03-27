@@ -7,8 +7,10 @@ public class Simulation {
 
   public static void main(String[] args) {
 
+    //input parameters
 	  int bufferSize = args[0];
 	  double processSpeed = args[1];
+
 	  //Asks user for file name they wish to simulate
 	  Scanner scanner = new Scanner (System.in);
 	  System.out.println("Enter your File name: ");
@@ -16,19 +18,31 @@ public class Simulation {
 
 	  //Calls csv Reader on user's File
 	  csvReader reader = new csvReader(Filename);
-	  List<List<String>> vars = reader.exportVariables();
 
+    //stores list of rates - one minute after another
+	  List<Integer> ratesList = reader.exportVariables();
+
+    //testing if it got all values.
 	 /* for (int i=0; i<vars.size();i++) {
 
 	    System.out.println(vars.get(i));
 
 	  }
 	  */
+
+    /* DO NOT NEED AT all
 	  //Gets the date and time values from the csv File
 	  Buffer ListTimesRates = new Buffer(vars);
 	  //Gets the rate values from the csv File
 	  List<String> lrates = ListTimesRates.loadRatesBuffer();
-	  List<Message> listMessage = new ArrayList<>();
+    DO NOT NEED */
+
+
+
+
+    //NEED THIS
+    //list to store messages.
+    List<Message> listMessage = new ArrayList<>();
 
 	 //create messages
 	  for (int i=0; i < ListTimesRates.size(); i++) {
@@ -36,8 +50,6 @@ public class Simulation {
 	    listMessage.add(new Message());
 
 	  }
-
-
     long simStartTime = System.nanoTime();
 
     /*
@@ -50,9 +62,6 @@ public class Simulation {
 
     */
 
-
-
-
 	  //calculate total travel
 	  double totalTime;
 	  for(int j=0; j < ListTimesRates.size(); j++) {
@@ -63,7 +72,7 @@ public class Simulation {
 
     }
 
-
+    /* DO NOT NEED AT THE MOMENT.
 	  //ProccesingUnit(double speed, Buffer B)
 	  ProcessingUnit rateProcessor = new ProcessingUnit(2,ListTimesRates);
 	  List<Double> dubs = rateProcessor.processRates();
@@ -73,6 +82,6 @@ public class Simulation {
           System.out.println("Latency: ");
           System.out.println(ctimes.calcuLatency().toString());
           System.out.println("Throughput: ");
-	  System.out.println(ctimes.calcuThroughput().toString());
+	  System.out.println(ctimes.calcuThroughput().toString());*/
 }
 }
