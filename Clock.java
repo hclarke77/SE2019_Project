@@ -4,49 +4,29 @@ import java.lang.*;
 
 public class Clock {
 
+	long startTime;
+	long currTime;
+	long endTime;
 
-	double averageTime;
-	double speed;
-	List<Double> times;
+	public Clock(){
 
-	public Clock(double s, List<Double> t){
-
-	  speed = s;
-	  times = t;
-
+	  startTime = 0;
+	  currTime = 0;
+	  endTime = 0;
 	}
 
-	//Need to be fixed!!!!!
-
-	//calculate one message time
-	public void waitFor(Long speedup)
-	{
-
-	  for (int i=0; i<times.size(); i++) {
-
-	      //wait(speedup*times.get(i)/1000000000);
-	  }
+	public long StartTime(){
+		startTime = System.nanoTime();
+		return startTime;
 	}
 
-	public Double calcuThroughput()
-	{
-		double totalTime = 0;
+	public long CurrentTime(){
+		currTime = System.nanoTime();
+		return currTime;
+	}
 
-		for( int i = 0; i < times.size(); i++ )
-		{
-			totalTime = totalTime + times.get(i);
-
+	public long EndTime(){
+		endTime = System.nanoTime();
+		return endTime;
 		}
-
-		return totalTime;
-	}
-
-	//calculate average time
-	public Double calcuLatency()
-	{
-		double averageTime = calcuThroughput()/times.size();
-
-		return averageTime;
-	}
-
 }
