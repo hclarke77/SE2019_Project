@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.*;
 
+
 public class csvReader {
 
   String csvFilename;
@@ -30,9 +31,6 @@ public class csvReader {
 
             return records;
         } catch (FileNotFoundException e) {
-          for (int i=0; i<records.size(); i++) {
-            System.out.println(records.get(0));
-          }
 
           return records;
 	     }
@@ -51,10 +49,15 @@ public class csvReader {
       }
     }
 
+    //testing if it prints all of them 
     public static void main(String[] args) {
       String file = args[0];
       csvReader reader = new csvReader(file);
-      reader.exportVariables();
+      List<Integer> mylist = reader.exportVariables();
+      for (int i=0; i<mylist.size(); i++){
+        System.out.println(mylist.get(i));
+      }
+
 
     }
 
