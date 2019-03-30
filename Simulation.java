@@ -35,7 +35,7 @@ public class Simulation {
     Clock simulClock = new Clock();
 
     //ill work on this part - Romeo
-    new Timer().scheduleAtFixedRate(task, delay, period);
+    new Timer().scheduleAtFixedRate(, .5, 1);
 
     //start of simulation
     while(!listMessage.isEmpty()){
