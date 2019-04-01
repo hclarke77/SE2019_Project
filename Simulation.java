@@ -8,8 +8,8 @@ public class Simulation {
   public static void main(String[] args) {
 
     //input parameters
-	  int bufferSize = args[0];
-	  double processSpeed = args[1];
+	  int bufferSize = Integer.valueOf(args[0]);
+	  double processSpeed = Double.valueOf(args[1]);
 
 	  //Asks user for file name they wish to simulate
 	  Scanner scanner = new Scanner (System.in);
@@ -22,10 +22,22 @@ public class Simulation {
     //stores list of rates - one minute after another
 	  List<Integer> ratesList = reader.exportVariables();
 
+    simulateMinute minutia = new simulateMinute(bufferSize, processSpeed, ratesList);
+
+    int currentMinRate;
+    int listIndex = 0;
+    long delayTime = 0;
+    long minuteSimulateTime = 60*1000;
+    Timer minuteTimer = new Timer();
+    minuteTimer.scheduleAtFixedRate(minutia, delayTime, minuteSimulateTime);
+
+
+/*
+    new Timer().scheduleAtFixedRate()
     /*testing if it got all values
 	  for (int i=0; i<vars.size();i++) {
 	    System.out.println(vars.get(i));
-	  }*/
+	  }
 
     //list to store messages.
     List<Message> listMessage = new ArrayList<>(bufferSize);
@@ -35,7 +47,8 @@ public class Simulation {
     Clock simulClock = new Clock();
 
     //ill work on this part - Romeo
-    new Timer().scheduleAtFixedRate(, .5, 1);
+    new Timer().scheduleAtFixedRate(currentRate = simulateMinute.runSimulation(), .5, 1);
+
 
     //start of simulation
     while(!listMessage.isEmpty()){
@@ -67,7 +80,7 @@ public class Simulation {
         index = travelArray.size() / 2;
       }
 
-      */
+
 
   	  //calculate total travel
   	  double totalTime;
@@ -94,5 +107,4 @@ public class Simulation {
             System.out.println("Throughput: ");
   	  System.out.println(ctimes.calcuThroughput().toString());*/
     }
-}
 }
