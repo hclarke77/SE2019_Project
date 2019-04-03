@@ -4,67 +4,47 @@ import java.lang.*;
 
 public class Buffer {
 
-    List<List<String>> ratesTimes;
-    int size;
+long time;
+long processSpeed;
+Queue<Message> qMess;
 
-    public Buffer(List<List<String>> r, int s) {
+public Buffer(long t, long p) {
 
-        ratesTimes = r;
-        size = s;
+  time = t;
+  processSpeed = p;
 
-    }
+}
+   
+public void addMessages() {
 
-    public List<String> loadTimesBuffer() {
+  for(int i=0;i<processSpeed;i++) {
 
-        List<String> times = new ArrayList<>();
+}
 
-        int size = ratesTimes.size();
-
-        for (int i = 1; i < size; i++) {
-
-          times.add(ratesTimes.get(i).get(0));
-
-         }
-
-	      return times;
-
-    }
-
-
-    public List<String> loadRatesBuffer() {
-
-        List<String> rates = new ArrayList<>();
-
-        int size = ratesTimes.size();
-
-        for (int i = 1; i < size; i++) {
-
-	        rates.add(ratesTimes.get(i).get(1));
-	      }
-
-        return rates;
+public void processMessages() {
+  
+  
+   
+   
+   
+   
+   
+   
+   
+   
+  return numSeconds;
+  }
+}
 
 
-    }
+public int numberDropped() {
+
+  int dropped;
+  dropped = 
+
+}
 
 
-
-    public int getSize(List<String> listRates) {
-
-        int cnt = listRates.size();
-
-        return cnt;
-
-    }
-
-
-    public String getRate(List<String> listRates, int index) {
-
-        String retString = listRates.get(index);
-
-        return retString;
-
-    }
 
 
 
