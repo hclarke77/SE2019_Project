@@ -4,6 +4,7 @@ import java.lang.*;
 
 public class Buffer {
 
+
 long time;
 long messagesProcessed;
 long numMessages;
@@ -13,17 +14,21 @@ long maxNumberLost;
 long totalNumberLost;
 Queue<Message> qMess;
 
+
 public Buffer(long size) {
 
   bufferSize = size;
-  Queue qMess = Queue<Message>(bufferSize);
+  Queue<Message> qMess = new LinkedList<Message>();
   maxNumberLost = 0;
   totalNumberLost = 0;
 
 }
 
+
 public void addMessages(long rate, long currTime) {
   time = currTime;
+  System.out.println("Buffer Current Time Is \n");
+  System.out.println(time);
   numMessages = rate;
   numberLost = 0;
   for(int i=0;i<numMessages;i++) {
@@ -40,6 +45,7 @@ public void addMessages(long rate, long currTime) {
   }
 }
 
+
 public void processMessages(long rate, long currTime) {
   time = currTime;
   messagesProcessed = rate;
@@ -48,8 +54,6 @@ public void processMessages(long rate, long currTime) {
       x.setOut(time);
   }
 }
-
-
 
 
 public long maxNumberDropped(){
@@ -63,9 +67,6 @@ public long totalNumberDropped() {
   return totalNumberLost;
 
 }
-
-
-
 
 
 }

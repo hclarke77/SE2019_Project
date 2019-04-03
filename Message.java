@@ -13,13 +13,13 @@ public class Message {
 
   }
 
-  public void setIn(double numTime) {
+  public void setIn(long numTime) {
 
     inTime = numTime;
 
   }
 
-  public void setOut(double numTime2) {
+  public void setOut(long numTime2) {
 
     outTime = numTime2;
 

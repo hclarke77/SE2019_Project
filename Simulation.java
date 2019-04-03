@@ -4,19 +4,13 @@ import java.lang.*;
 
 public class Simulation {
 
-  /*
-  public void addMessages(long numberToAdd, long currentTime) {
-
-  }*/
-
   public static void main(String[] args) {
-    Simulation currentSimulation = new Simulation();
     //input parameters
 	  long bufferSize = Long.valueOf(args[0]);
 	  double processSpeed = Double.valueOf(args[1]);
     long microProcessSpeed = java.lang.Math.round(processSpeed * .000001);
 
-    //Buffer inputThread = new Buffer();
+    Buffer inputThread = new Buffer(bufferSize);
 
 	  //Asks user for file name they wish to simulate
 	  Scanner scanner = new Scanner (System.in);
@@ -35,24 +29,32 @@ public class Simulation {
     long currTime = 0;
     int listIndex = 0;
     long minuteDivide = 6 * 10^9;
+    long currentSecRate = Long.valueOf(ratesList.get(listIndex));
+    long currentMicroRate = java.lang.Math.round(currentSecRate * .000001);
     //in time this will all go in clock class - once i figure it out
 
-    while (True) {
+    while (true) {
       //currTime = microsecond
+      if (currTime % minuteDivide == 0) {
+        currentSecRate = Long.valueOf(ratesList.get(listIndex));
+        currentMicroRate = java.lang.Math.round(currentSecRate * .000001);
+        listIndex += 1;
+        System.out.println(currentMicroRate);
+      }
+
       if (currTime % 1 == 0)
       {
-        currentSimulation.addMessages(currentMicroRate, currTime);
-        currentSimulation.processMessages(microProcessSpeed, currTime);
-      }
-      if (currTime % minuteDivide == 0) {
-        long currentSecRate = valueOf(ratesList.get(listIndex));
-        long currentMicroRate = java.lang.Math.round(currentSecRate * .000001);
-        listIndex += 1;
+        inputThread.addMessages(currentMicroRate, currTime);
+        inputThread.processMessages(microProcessSpeed, currTime);
       }
 
       currTime += 1;
 
     }
+
+  }
+
+}
 
 
 
@@ -132,5 +134,3 @@ public class Simulation {
             System.out.println(ctimes.calcuLatency().toString());
             System.out.println("Throughput: ");
   	  System.out.println(ctimes.calcuThroughput().toString());*/
-    }
-}
