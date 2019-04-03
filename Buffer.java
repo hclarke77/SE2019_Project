@@ -5,7 +5,8 @@ import java.lang.*;
 public class Buffer {
 
 long time;
-long processSpeed;
+long messagesProcessed;
+long numMessages;
 Queue<Message> qMess;
 
 public Buffer(long t, long p) {
@@ -14,33 +15,34 @@ public Buffer(long t, long p) {
   processSpeed = p;
 
 }
-   
+
 public void addMessages() {
 
-  for(int i=0;i<processSpeed;i++) {
+  for(int i=0;i<numMessages;i++) {
+    qMess.add(new Message());
 
 }
 
 public void processMessages() {
-  
-  
-   
-   
-   
-   
-   
-   
-   
-   
+
+
+
+
+
+
+
+
+
+
   return numSeconds;
-  }
+};
 }
 
 
 public int numberDropped() {
 
   int dropped;
-  dropped = 
+  dropped =
 
 }
 
