@@ -7,36 +7,39 @@ public class Buffer {
 long time;
 long messagesProcessed;
 long numMessages;
+long bufferSize;
 Queue<Message> qMess;
 
-public Buffer(long t, long p) {
+public Buffer(long size) {
 
-  time = t;
-  processSpeed = p;
+  Queue qMess = Queue<Message>(bufferSize);
 
 }
 
-public void addMessages() {
-
+public void addMessages(long rate, long currTime) {
+  time = currTime;
+  numMessages = rate;
   for(int i=0;i<numMessages;i++) {
-    qMess.add(new Message());
+    qMess.add(new Message(time));
+
+  }
+}
+
+public void processMessages(long rate, long currTime) {
+  time = currTime;
+  numMessages = rate;
+
+
+
+
+
+
+
+
+
 
 }
 
-public void processMessages() {
-
-
-
-
-
-
-
-
-
-
-  return numSeconds;
-};
-}
 
 
 public int numberDropped() {

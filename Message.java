@@ -1,25 +1,28 @@
 public class Message {
 
-  double inTime,outTime,travelTime;
+  long inTime,outTime,travelTime;
 
-  public Message() {
-
-    }
+  public Message(long in) {
+    inTime = in;
+  }
 
   public double calculateTravel() {
 
     travelTime = outTime - inTime;
     return travelTime;
 
-}
+  }
 
   public void setIn(double numTime) {
 
     inTime = numTime;
-    }
+
+  }
 
   public void setOut(double numTime2) {
 
     outTime = numTime2;
-    }
+
+  }
+
 }
