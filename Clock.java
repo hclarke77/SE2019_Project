@@ -25,15 +25,16 @@ public class Clock {
 				microSecondsPassed += 1;
 				this.notify();
 
-			} else if (currTime % 1000000 == 0) {
+			};
+			if (currTime % 1000000 == 0) {
 				secondsPassed += 1;
 
-			} else if (currTime % 60000000 == 0) {
+			};
+			 if (currTime % 60000000 == 0) {
 				minutesPassed += 1;
 				this.notifyAll();
 
-
-			}
+			};
 
 		}
 	}
