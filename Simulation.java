@@ -23,29 +23,11 @@ public class Simulation {
     //stores list of rates - one minute after another
 	  List<Integer> ratesList = reader.exportVariables();
 
-    int currentMinRate;
-    int listIndex = 0;
-
-    TimerTask sixtySecondTask = new TimerTask() {
-      public void run(){
-        currentMinRate = ratesList.get(listIndex);
-        listIndex = listIndex+1;
-        System.out.println(currentMinRate);
-      }
-    };
 
 
-    long delayTime = 0;
-    long minuteSimulateTime = 60*1000;
-    long secondSimulateTime = 1000;
-    Timer minuteTimer = new Timer();
-    Timer secondTimer = new Timer();
-    Timer microTimer = new Timer();
-    minuteTimer.scheduleAtFixedRate(sixtySecondTask, delayTime, minuteSimulateTime);
 
 
 /*
-    new Timer().scheduleAtFixedRate()
     /*testing if it got all values
 	  for (int i=0; i<vars.size();i++) {
 	    System.out.println(vars.get(i));
