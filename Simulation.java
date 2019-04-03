@@ -22,14 +22,25 @@ public class Simulation {
     //stores list of rates - one minute after another
 	  List<Integer> ratesList = reader.exportVariables();
 
-    simulateMinute minutia = new simulateMinute(bufferSize, processSpeed, ratesList);
-
     int currentMinRate;
     int listIndex = 0;
+
+    TimerTask sixtySecondTask = new TimerTask() {
+      public void run(){
+        currentMinRate = ratesList.get(listIndex);
+        listIndex = listIndex+1;
+        System.out.println(currentMinRate);
+      }
+    };
+
+
     long delayTime = 0;
     long minuteSimulateTime = 60*1000;
+    long secondSimulateTime = 1000;
     Timer minuteTimer = new Timer();
-    minuteTimer.scheduleAtFixedRate(minutia, delayTime, minuteSimulateTime);
+    Timer secondTimer = new Timer();
+    Timer microTimer = new Timer();
+    minuteTimer.scheduleAtFixedRate(sixtySecondTask, delayTime, minuteSimulateTime);
 
 
 /*
