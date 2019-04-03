@@ -8,7 +8,6 @@ public class Clock {
 	long counter;
 	long currTime=0;
 	long endTime;
-	long microSecondsPassed=0;
 	long secondsPassed=0;
 	long minutesPassed=0;
 
@@ -17,12 +16,14 @@ public class Clock {
 		//take simulation class as object
 	}
 
+	public void stopClock() {
+
+	}
 	public void runClock() {
 		currTime = startTime;
 		while (True) {
 			currTime = currTime+1;
 			if (currTime%1 == 0) {
-				microSecondsPassed += 1;
 				this.notify();
 
 			};
