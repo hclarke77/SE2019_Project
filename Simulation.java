@@ -15,6 +15,7 @@ public class Simulation {
 	  Scanner scanner = new Scanner (System.in);
 	  System.out.println("Enter your File name: ");
 	  String Filename = scanner.next();
+    scanner.close();
 
 	  //Calls csv Reader on user's File
 	  csvReader reader = new csvReader(Filename);
