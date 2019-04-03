@@ -6,11 +6,11 @@ public class Clock {
 
 	long startTime;
 	long counter;
-	long currTime;
+	long currTime=0;
 	long endTime;
 	long microSecondsPassed=0;
-	long secondsPassed;
-	long minutesPassed;
+	long secondsPassed=0;
+	long minutesPassed=0;
 
 	public Clock(){
 	  startTime = 0;
@@ -21,7 +21,7 @@ public class Clock {
 		currTime = startTime;
 		while (True) {
 			currTime = currTime+1;
-			if (currTime%1000 == 0) {
+			if (currTime%1 == 0) {
 				microSecondsPassed += 1;
 				this.notify();
 
