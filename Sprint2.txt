@@ -1,0 +1,25 @@
+Sprint 2 Product Backlog:
+
+	Buffer:
+		-Create buffer in a queue based on input buffer size
+		-add messages to queue 
+		-pop messages from queue
+	
+	Clock:
+		-run Clock continuously
+		-keeps track of current microsecond
+		-notifies when 1 second, and 1 minute has passed
+		
+	Messages:
+		-keeps track of input and ouput message times
+		-calculate each messages latency
+		
+	Simulation:	
+		-runs Clock
+		-adds message to Buffer every nanosecond
+		-pops message per time unit
+		
+	Test Plan:	
+		-test buffer queue adding/popping
+		-test clock times
+		-implementation in Simulation
