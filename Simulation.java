@@ -24,14 +24,14 @@ public class Simulation {
     //stores list of rates - one minute after another
 	  List<Integer> ratesList = reader.exportVariables();
 
-    //List<Message> bufferList = new ArrayList<Message>(bufferSize);
-
     long currTime = 0;
     int listIndex = 0;
     long minuteDivide = 6 * 10^9;
+    int averageLatency;
     long currentSecRate = Long.valueOf(ratesList.get(listIndex));
-    long currentMicroRate = java.lang.Math.round(currentSecRate * .000001);
+    long currentMicroRate = currentSecRate / 1000000;
     //in time this will all go in clock class - once i figure it out
+    long microRemainderRate = currentSecRate % 1000000;
 
     while (true) {
       //currTime = microsecond
@@ -39,13 +39,14 @@ public class Simulation {
         currentSecRate = Long.valueOf(ratesList.get(listIndex));
         currentMicroRate = java.lang.Math.round(currentSecRate * .000001);
         listIndex += 1;
-        System.out.println(currentMicroRate);
       }
 
       if (currTime % 1 == 0)
       {
-        inputThread.addMessages(currentMicroRate, currTime);
+        inputThread.addMessages(20, currTime);
         inputThread.processMessages(microProcessSpeed, currTime);
+        System.out.println(currentMicroRate);
+        System.out.println(microRemainderRate);
       }
 
       currTime += 1;
@@ -55,7 +56,6 @@ public class Simulation {
   }
 
 }
-
 
 
 
@@ -77,7 +77,6 @@ public class Simulation {
     //ill work on this part - Romeo
     new Timer().scheduleAtFixedRate(currentRate = simulateMinute.runSimulation(), .5, 1);
 
-
     //start of simulation
     while(!listMessage.isEmpty()){
       int z=0;
@@ -97,9 +96,6 @@ public class Simulation {
          clock.wa
       }
 
-
-
-
       /*
 
       if travelArray.size() % 2 == 1 {
@@ -107,8 +103,6 @@ public class Simulation {
       } else {
         index = travelArray.size() / 2;
       }
-
-
 
   	  //calculate total travel
   	  double totalTime;
@@ -119,9 +113,6 @@ public class Simulation {
   	    totalTime += travel;
 
       }
-
-
-
 
       /* DO NOT NEED AT THE MOMENT.
   	  //ProccesingUnit(double speed, Buffer B)

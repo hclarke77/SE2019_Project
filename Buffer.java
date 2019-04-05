@@ -19,6 +19,7 @@ public Buffer(long size) {
 
   bufferSize = size;
   Queue<Message> qMess = new LinkedList<Message>();
+  System.out.println(qMess);
   maxNumberLost = 0;
   totalNumberLost = 0;
 
@@ -27,13 +28,15 @@ public Buffer(long size) {
 
 public void addMessages(long rate, long currTime) {
   time = currTime;
-  System.out.println("Buffer Current Time Is \n");
-  System.out.println(time);
+  System.out.println("Buffer Current Time Is: " + time);
   numMessages = rate;
   numberLost = 0;
   for(int i=0;i<numMessages;i++) {
+    System.out.println("Iteration: "+i);
+    System.out.println(qMess);
     if (qMess.size() < bufferSize) {
       qMess.add(new Message(time));
+      System.out.println("Queue Current Size Is: " + qMess.size());
     }
     else {
       numberLost += 1;
@@ -49,11 +52,17 @@ public void addMessages(long rate, long currTime) {
 public void processMessages(long rate, long currTime) {
   time = currTime;
   messagesProcessed = rate;
-  for(int i=0;i<numMessages;i++) {
-      Message x = qMess.remove();
-      x.setOut(time);
-      System.out.println(x.calculateTravel());
+  System.out.println(qMess.size());
+  if (qMess.size() > 0){
+    for(int i=0;i<numMessages;i++) {
+        Message x = qMess.remove();
+        x.setOut(time);
+        System.out.println(x.calculateTravel());
+    }
+  } else {
+    System.out.println("No messages to be processed.");
   }
+
 }
 
 
