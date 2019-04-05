@@ -14,7 +14,7 @@ public class Simulation {
 
 	  //Asks user for file name they wish to simulate
 	  Scanner scanner = new Scanner (System.in);
-	  System.out.println("Enter your File name: ");
+	  System.out.println("Enter your File name (must be CSV): ");
 	  String Filename = scanner.next();
     scanner.close();
 
