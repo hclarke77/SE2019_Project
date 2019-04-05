@@ -52,6 +52,7 @@ public void processMessages(long rate, long currTime) {
   for(int i=0;i<numMessages;i++) {
       Message x = qMess.remove();
       x.setOut(time);
+      System.out.println(x.calculateTravel());
   }
 }
 
