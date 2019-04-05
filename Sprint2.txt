@@ -16,7 +16,7 @@ Sprint 2 Product Backlog:
     *Create method that calculates the number of messages lost in total throughout simulation because they 'dont' fit in buffer
     *Create method that calculates the largest number of messages lost in any one microsecond instance because they don't fit in buffer
 
-	Clock:
+	Clock: (final priority)
 		-completely change to use counted time (infinite while and counter) instead of real time
 		-create method that starts clock (while loop)
 		-create method that returns current microsecond
