@@ -11,18 +11,25 @@ public class Simulation {
     long microProcessSpeed = java.lang.Math.round(processSpeed * .000001);
 
     Buffer inputThread = new Buffer(bufferSize);
+    System.out.println(inputThread.qMess);
 
 	  //Asks user for file name they wish to simulate
 	  Scanner scanner = new Scanner (System.in);
+    System.out.println("Line 18: "+inputThread.qMess);
 	  System.out.println("Enter your File name (must be CSV): ");
 	  String Filename = scanner.next();
     scanner.close();
+    System.out.println("Line 22: "+inputThread.qMess);
 
 	  //Calls csv Reader on user's File
 	  csvReader reader = new csvReader(Filename);
+    System.out.println("Line 26: "+inputThread.qMess);
+
 
     //stores list of rates - one minute after another
 	  List<Integer> ratesList = reader.exportVariables();
+    System.out.println("Line 30: "+inputThread.qMess);
+
 
     long currTime = 0;
     int listIndex = 0;
@@ -32,8 +39,11 @@ public class Simulation {
     long currentMicroRate = currentSecRate / 1000000;
     //in time this will all go in clock class - once i figure it out
     long microRemainderRate = currentSecRate % 1000000;
+    System.out.println("Line 42: "+inputThread.qMess);
+
 
     while (true) {
+      System.out.println("Line 46: "+inputThread.qMess);
       //currTime = microsecond
       if (currTime % minuteDivide == 0) {
         currentSecRate = Long.valueOf(ratesList.get(listIndex));
@@ -43,6 +53,7 @@ public class Simulation {
 
       if (currTime % 1 == 0)
       {
+        System.out.println("Line 57: "+inputThread.qMess);
         inputThread.addMessages(20, currTime);
         inputThread.processMessages(microProcessSpeed, currTime);
         System.out.println(currentMicroRate);
