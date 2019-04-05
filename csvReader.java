@@ -49,7 +49,7 @@ public class csvReader {
       }
     }
 
-    //testing if it prints all of them 
+    //testing if it prints all of them
     public static void main(String[] args) {
       String file = args[0];
       csvReader reader = new csvReader(file);
