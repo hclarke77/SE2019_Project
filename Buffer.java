@@ -18,7 +18,7 @@ Queue<Message> qMess;
 public Buffer(long size) {
 
   bufferSize = size;
-  Queue<Message> qMess = new LinkedList<Message>();
+  qMess = new LinkedList<Message>();
   //qMess.add(new Message(size));
   System.out.println(qMess);
   maxNumberLost = 0;

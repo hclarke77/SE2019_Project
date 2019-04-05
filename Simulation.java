@@ -33,12 +33,12 @@ public class Simulation {
 
     long currTime = 0;
     int listIndex = 0;
-    long minuteDivide = 6 * 10^9;
+    long minuteDivide = 6 * 10^7;
     int averageLatency;
-    long currentSecRate = Long.valueOf(ratesList.get(listIndex));
-    long currentMicroRate = currentSecRate / 1000000;
+    long currentSecRate = 0; //= Long.valueOf(ratesList.get(listIndex));
+    long currentMicroRate = 0; //= currentSecRate / 1000000;
     //in time this will all go in clock class - once i figure it out
-    long microRemainderRate = currentSecRate % 1000000;
+    long microRemainderRate = 0;
     long microSecondNumber = 0;
     System.out.println("Line 42: "+inputThread.qMess);
 
@@ -48,7 +48,8 @@ public class Simulation {
       //currTime = microsecond
       if (currTime % minuteDivide == 0) {
         currentSecRate = Long.valueOf(ratesList.get(listIndex));
-        currentMicroRate = java.lang.Math.round(currentSecRate * .000001);
+        currentMicroRate = currentSecRate / 1000000;
+        microRemainderRate = currentSecRate % 1000000;
         listIndex += 1;
       }
       if (currTime % 1000000 == 0){
@@ -57,7 +58,7 @@ public class Simulation {
 
       if (currTime % 1 == 0)
       {
-        if (microSecondNumber <= microRemainderRate){
+        if (microSecondNumber < microRemainderRate){
           System.out.println("Line 58: "+inputThread.qMess);
           inputThread.addMessages((currentMicroRate+1), currTime);
           inputThread.processMessages(microProcessSpeed, currTime);
@@ -70,6 +71,7 @@ public class Simulation {
           System.out.println(currentMicroRate);
           System.out.println(microRemainderRate);
         }
+        microSecondNumber+= 1;
 
       }
 

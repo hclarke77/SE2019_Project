@@ -13,8 +13,8 @@ Sprint 2 Product Backlog:
 		*Create buffer in a queue based on input buffer size
 		*Create method that adds given number of messages to the queue
 		*Create method that pops given number of messages from queue
-    *Create method that calculates the number of messages lost in total throughout simulation because they dont fit in buffer
-    *Create method that calculates the largest number of messages lost in any one microsecond instance because they dont fit in buffer
+    *Create method that calculates the number of messages lost in total throughout simulation because they 'dont' fit in buffer
+    *Create method that calculates the largest number of messages lost in any one microsecond instance because they don't fit in buffer
 
 	Clock:
 		-completely change to use counted time (infinite while and counter) instead of real time
