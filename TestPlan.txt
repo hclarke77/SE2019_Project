@@ -1,0 +1,25 @@
+Test plan
+
+Our test could divide into two part.
+
+Unit test - To make sure all java classes could work. It includes function and logic test.
+
+Integral test - To make sure our project could be use.
+
+
+.Unit Test
+
+ClockTest  -- Cloud it show micro, nano secode? Could it calculate latency?
+CsvReaderTest -- Print read datas.
+MessageTest  --  Print created message. Print travel time.
+BufferTest  -- Print maximum buffer size.
+ProcessTest  -- Using some data to simulate message. 
+
+.Integral test
+SimulationTest - Using message data to test simulation class. Could it get right output?
+
+
+After finished test work, we should have a conclusion file:
+Test Methods (Every test class's function)
+Test Data    (normal, Maximum, Minimum, Boundary, and so on)
+Test Report  
