@@ -39,6 +39,7 @@ public class Simulation {
     long currentMicroRate = currentSecRate / 1000000;
     //in time this will all go in clock class - once i figure it out
     long microRemainderRate = currentSecRate % 1000000;
+    long microSecondNumber = 0;
     System.out.println("Line 42: "+inputThread.qMess);
 
 
@@ -50,15 +51,28 @@ public class Simulation {
         currentMicroRate = java.lang.Math.round(currentSecRate * .000001);
         listIndex += 1;
       }
+      if (currTime % 1000000 == 0){
+        microSecondNumber = 0;
+      }
 
       if (currTime % 1 == 0)
       {
-        System.out.println("Line 57: "+inputThread.qMess);
-        inputThread.addMessages(20, currTime);
-        inputThread.processMessages(microProcessSpeed, currTime);
-        System.out.println(currentMicroRate);
-        System.out.println(microRemainderRate);
+        if (microSecondNumber <= microRemainderRate){
+          System.out.println("Line 58: "+inputThread.qMess);
+          inputThread.addMessages((currentMicroRate+1), currTime);
+          inputThread.processMessages(microProcessSpeed, currTime);
+          System.out.println(currentMicroRate);
+          System.out.println(microRemainderRate);
+        } else {
+          System.out.println("Line 64: "+inputThread.qMess);
+          inputThread.addMessages(currentMicroRate, currTime);
+          inputThread.processMessages(microProcessSpeed, currTime);
+          System.out.println(currentMicroRate);
+          System.out.println(microRemainderRate);
+        }
+
       }
+
 
       currTime += 1;
 
