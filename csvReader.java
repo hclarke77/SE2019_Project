@@ -18,15 +18,15 @@ public class csvReader {
     }
 
 
-    public List<Integer> exportVariables() {
-
-        List<Integer> records = new ArrayList<>();
-        try (Scanner scanner = new Scanner(new File(csvFilename));) {
+    public int[] exportVariables() {
+	int i = 0;
+	int[] records = new int[100000];
+       try (Scanner scanner = new Scanner(new File(csvFilename));) {
           scanner.useDelimiter(",").nextLine();
             while (scanner.hasNextLine()) {
 		            //String line = scanner.nextLine();
-                records.add(Integer.valueOf(getRecordFromLine(scanner.nextLine()).get(1)));
-
+                records[i] = Integer.valueOf(getRecordFromLine(scanner.nextLine()).get(1));
+	       i += 1;
             }
 
             return records;
@@ -36,8 +36,8 @@ public class csvReader {
 	     }
     }
 
-    private List<String> getRecordFromLine(String line) {
-      List<String> values = new ArrayList<String>();
+    private ArrayList<String> getRecordFromLine(String line) {
+      ArrayList<String> values = new ArrayList<String>();
       try (Scanner rowScanner = new Scanner(line)) {
         rowScanner.useDelimiter(",");
         while (rowScanner.hasNext()) {
@@ -53,9 +53,9 @@ public class csvReader {
     public static void main(String[] args) {
       String file = args[0];
       csvReader reader = new csvReader(file);
-      List<Integer> mylist = reader.exportVariables();
-      for (int i=0; i<mylist.size(); i++){
-        System.out.println(mylist.get(i));
+      int[] mylist = reader.exportVariables();
+      for (int i=0; i<mylist.length; i++){
+        System.out.println(mylist[i]);
       }
 
 

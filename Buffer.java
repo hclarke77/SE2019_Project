@@ -18,7 +18,8 @@ Queue<Message> qMess;
 public Buffer(long size) {
 
   bufferSize = size;
-  Queue<Message> qMess = new LinkedList<Message>();
+  qMess = new LinkedList<Message>();
+  //qMess.add(new Message(size));
   maxNumberLost = 0;
   totalNumberLost = 0;
 
@@ -27,8 +28,7 @@ public Buffer(long size) {
 
 public void addMessages(long rate, long currTime) {
   time = currTime;
-  System.out.println("Buffer Current Time Is \n");
-  System.out.println(time);
+  System.out.println("Buffer Current Time Is: " + time);
   numMessages = rate;
   numberLost = 0;
   for(int i=0;i<numMessages;i++) {
@@ -43,18 +43,33 @@ public void addMessages(long rate, long currTime) {
       }
     }
   }
+  System.out.println("Queue Current Size Is: " + qMess.size());
 }
 
 
 public void processMessages(long rate, long currTime) {
   time = currTime;
   messagesProcessed = rate;
-  for(int i=0;i<numMessages;i++) {
-      Message x = qMess.remove();
-      x.setOut(time);
-  }
+  System.out.println(qMess.size());
+  if (qMess.size() > 0){
+    for(int i=0;i<numMessages;i++) {
+        Message x = qMess.remove();
+        x.setOut(time);
+        System.out.println(x.calculateTravel());
+    }
+  } 
+
 }
 
+/*public boolean isEmpty() {
+
+  if (qMess.size() > 0) {
+  return false;
+  } else {
+  return true;
+  }
+}
+*/
 
 public long maxNumberDropped(){
 

@@ -11,6 +11,7 @@ public class Simulation {
     long microProcessSpeed = java.lang.Math.round(processSpeed * .000001);
 
     Buffer inputThread = new Buffer(bufferSize);
+    //System.out.println(inputThread.qMess);
 
 	  //Asks user for file name they wish to simulate
 	  Scanner scanner = new Scanner (System.in);
@@ -22,40 +23,63 @@ public class Simulation {
 	  csvReader reader = new csvReader(Filename);
 
     //stores list of rates - one minute after another
-	  List<Integer> ratesList = reader.exportVariables();
+    int[] ratesList = reader.exportVariables();
 
-    //List<Message> bufferList = new ArrayList<Message>(bufferSize);
 
     long currTime = 0;
     int listIndex = 0;
-    long minuteDivide = 6 * 10^9;
-    long currentSecRate = Long.valueOf(ratesList.get(listIndex));
-    long currentMicroRate = java.lang.Math.round(currentSecRate * .000001);
+    long minuteDivide = 6 * 10^7;
+    int averageLatency;
+    long currentSecRate = 0; //= Long.valueOf(ratesList.get(listIndex));
+    long currentMicroRate = 0; //= currentSecRate / 1000000;
     //in time this will all go in clock class - once i figure it out
+    long microRemainderRate = 0;
+    long microSecondNumber = 0;
+    boolean state = true;
 
-    while (true) {
-      //currTime = microsecond
+    while (state == true) {
+    //for (int j=0; j<1000; j++) {
+      currTime = microSecondNumber;
       if (currTime % minuteDivide == 0) {
-        currentSecRate = Long.valueOf(ratesList.get(listIndex));
-        currentMicroRate = java.lang.Math.round(currentSecRate * .000001);
+        currentSecRate = Long.valueOf(ratesList[listIndex]);
+        currentMicroRate = currentSecRate / 1000000;
+        microRemainderRate = currentSecRate % 1000000;
         listIndex += 1;
-        System.out.println(currentMicroRate);
+      }
+      
+      
+      
+      if (currTime % 1000000 == 0){
+        microSecondNumber = 0;
       }
 
       if (currTime % 1 == 0)
       {
-        inputThread.addMessages(currentMicroRate, currTime);
-        inputThread.processMessages(microProcessSpeed, currTime);
+        if (microSecondNumber < microRemainderRate){
+          inputThread.addMessages((currentMicroRate+1), currTime);
+          //inputThread.processMessages(microProcessSpeed, currTime);
+          System.out.println(currentMicroRate);
+          System.out.println(microRemainderRate);
+        } else {
+          inputThread.addMessages(currentMicroRate, currTime);
+          //inputThread.processMessages(microProcessSpeed, currTime);
+          System.out.println(currentMicroRate);
+          System.out.println(microRemainderRate);
+        }
+
+        microSecondNumber+= 1;
       }
-
-      currTime += 1;
-
+      
+      if (inputThread.qMess.isEmpty() == true) {
+	state = false;
+	}
+	  currTime += 1;
+	
     }
 
   }
 
 }
-
 
 
 
@@ -77,7 +101,6 @@ public class Simulation {
     //ill work on this part - Romeo
     new Timer().scheduleAtFixedRate(currentRate = simulateMinute.runSimulation(), .5, 1);
 
-
     //start of simulation
     while(!listMessage.isEmpty()){
       int z=0;
@@ -97,9 +120,6 @@ public class Simulation {
          clock.wa
       }
 
-
-
-
       /*
 
       if travelArray.size() % 2 == 1 {
@@ -107,8 +127,6 @@ public class Simulation {
       } else {
         index = travelArray.size() / 2;
       }
-
-
 
   	  //calculate total travel
   	  double totalTime;
@@ -119,9 +137,6 @@ public class Simulation {
   	    totalTime += travel;
 
       }
-
-
-
 
       /* DO NOT NEED AT THE MOMENT.
   	  //ProccesingUnit(double speed, Buffer B)
