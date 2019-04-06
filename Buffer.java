@@ -20,7 +20,6 @@ public Buffer(long size) {
   bufferSize = size;
   qMess = new LinkedList<Message>();
   //qMess.add(new Message(size));
-  System.out.println(qMess);
   maxNumberLost = 0;
   totalNumberLost = 0;
 
@@ -33,11 +32,8 @@ public void addMessages(long rate, long currTime) {
   numMessages = rate;
   numberLost = 0;
   for(int i=0;i<numMessages;i++) {
-    System.out.println("Iteration: "+i);
-    System.out.println(qMess);
     if (qMess.size() < bufferSize) {
       qMess.add(new Message(time));
-      System.out.println("Queue Current Size Is: " + qMess.size());
     }
     else {
       numberLost += 1;
@@ -47,6 +43,7 @@ public void addMessages(long rate, long currTime) {
       }
     }
   }
+  System.out.println("Queue Current Size Is: " + qMess.size());
 }
 
 

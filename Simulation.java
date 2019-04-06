@@ -15,20 +15,15 @@ public class Simulation {
 
 	  //Asks user for file name they wish to simulate
 	  Scanner scanner = new Scanner (System.in);
-    System.out.println("Line 18: "+inputThread.qMess);
 	  System.out.println("Enter your File name (must be CSV): ");
 	  String Filename = scanner.next();
     scanner.close();
-    System.out.println("Line 22: "+inputThread.qMess);
 
 	  //Calls csv Reader on user's File
 	  csvReader reader = new csvReader(Filename);
-    System.out.println("Line 26: "+inputThread.qMess);
-
 
     //stores list of rates - one minute after another
 	  List<Integer> ratesList = reader.exportVariables();
-    System.out.println("Line 30: "+inputThread.qMess);
 
 
     long currTime = 0;
@@ -40,11 +35,10 @@ public class Simulation {
     //in time this will all go in clock class - once i figure it out
     long microRemainderRate = 0;
     long microSecondNumber = 0;
-    System.out.println("Line 42: "+inputThread.qMess);
 
 
-    while (true) {
-      System.out.println("Line 46: "+inputThread.qMess);
+    //while (true) {
+    for (int j=0; j<1000; j++) {
       //currTime = microsecond
       if (currTime % minuteDivide == 0) {
         currentSecRate = Long.valueOf(ratesList.get(listIndex));
@@ -59,22 +53,19 @@ public class Simulation {
       if (currTime % 1 == 0)
       {
         if (microSecondNumber < microRemainderRate){
-          System.out.println("Line 58: "+inputThread.qMess);
           inputThread.addMessages((currentMicroRate+1), currTime);
-          inputThread.processMessages(microProcessSpeed, currTime);
+          //inputThread.processMessages(microProcessSpeed, currTime);
           System.out.println(currentMicroRate);
           System.out.println(microRemainderRate);
         } else {
-          System.out.println("Line 64: "+inputThread.qMess);
           inputThread.addMessages(currentMicroRate, currTime);
-          inputThread.processMessages(microProcessSpeed, currTime);
+          //inputThread.processMessages(microProcessSpeed, currTime);
           System.out.println(currentMicroRate);
           System.out.println(microRemainderRate);
         }
+
         microSecondNumber+= 1;
-
       }
-
 
       currTime += 1;
 
