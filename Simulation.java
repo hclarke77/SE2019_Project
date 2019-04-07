@@ -7,11 +7,12 @@ public class Simulation {
   public static void main(String[] args) {
     //input parameters
 	  long bufferSize = Long.valueOf(args[0]);
-	  double processSpeed = Double.valueOf(args[1]);
-    long microProcessSpeed = java.lang.Math.round(processSpeed * .000001);
+	  long processSpeed = Long.valueOf(args[1]);
+    long microProcessSpeed = (long) processSpeed / 1000000;
     long microRemainderProcess = (long)processSpeed % 1000000;
     System.out.println("Micro Remainder: " + microRemainderProcess);
     System.out.println("Micro Process Speed: " + microProcessSpeed);
+    System.out.println("Calculated Process Speed: " + (processSpeed / 1000000));
 
 
     Buffer inputThread = new Buffer(bufferSize);
@@ -44,19 +45,20 @@ public class Simulation {
     float avThroughput;
 
     //for (int j=0; j<300000000; j++) {
-    while (listIndex < ratesList.length) {
+
+    while (listIndex < 2 ) { //ratesList.length) {
       //currTime = microsecond
       if (currTime % minuteDivide == 0) {
         currentSecRate = Long.valueOf(ratesList[listIndex]);
         currentMicroRate = currentSecRate / 1000000;
         microRemainderRate = currentSecRate % 1000000;
         listIndex += 1;
-        minutesCompleted += 1;
         System.out.println("Minutes Completed: " + minutesCompleted);
-        currTime = 0;
+        minutesCompleted += 1;
       }
 
       if (currTime % 1000000 == 0){
+        //System.out.println("Seconds Completed: " + secondsCompleted);
         secondsCompleted += 1;
         microSecondNumber = 0;
       }
@@ -96,14 +98,31 @@ public class Simulation {
         break;
       }
     }
-    if (inputThread.qMess.size() > 0) {
+    //second while loop to empty queue after first while loop runs through all time
+    System.out.println("Finishing Emptying Queue of " + inputThread.qMess.size() +" Messages");
+    while (inputThread.qMess.size() != 0) {
+      if (currTime % 1000000 == 0){
+        System.out.println("Seconds Completed: " + secondsCompleted);
+        secondsCompleted += 1;
+        microSecondNumber = 0;
+      }
+
+      if (microSecondNumber < microRemainderProcess) {
+        inputThread.processMessages((microProcessSpeed+1), currTime);
+      } else {
+        inputThread.processMessages(microProcessSpeed, currTime);
+      }
+
+      microSecondNumber+= 1;
+      currTime += 1;
 
     }
+
     long totalMessagesUsed = inputThread.countMessages();
-    inputThread.callLatReader();
+    //inputThread.callLatReader();
     avThroughput = (float)totalMessagesUsed / secondsCompleted;
     System.out.println("Average Throughput: " + avThroughput);
-    System.out.println("Average Latency: " + inputThread.averageLatency());
+    System.out.println("Average Latency: " + inputThread.averageLatency() + " microseconds");
     System.out.println("Total Messages Lost: " + inputThread.totalNumberDropped());
     System.out.println("Max Messages Lost: " + inputThread.maxNumberDropped());
     System.out.println("Messages Left: " + inputThread.qMess.size());
