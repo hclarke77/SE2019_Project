@@ -100,6 +100,7 @@ public class Simulation {
 
     }
     long totalMessagesUsed = inputThread.countMessages();
+    inputThread.callLatReader();
     avThroughput = (float)totalMessagesUsed / secondsCompleted;
     System.out.println("Average Throughput: " + avThroughput);
     System.out.println("Average Latency: " + inputThread.averageLatency());
