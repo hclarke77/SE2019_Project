@@ -91,7 +91,7 @@ public class Simulation {
         microSecondNumber+= 1;
       }
   	  currTime += 1;
-      if (minutesCompleted > 600)
+      if (minutesCompleted > ratesList.length+1)
       {
         break;
       }
