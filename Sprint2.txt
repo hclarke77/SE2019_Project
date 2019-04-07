@@ -6,17 +6,17 @@ Sprint 2 Product Backlog:
     -Fix to actually simulate system with timings
 
   CSVReader:
-    -change to export CSV into a single array of rates instead of the complicated list of lists
-    -have methods to do everything in CSV not in buffer
+    *change to export CSV into a single array of rates instead of the complicated list of lists
+    *have methods to do everything in CSV not in buffer
 
 	Buffer:
-		-Create buffer in a queue based on input buffer size
-		-Create method that adds given number of messages to the queue
-		-Create method that pops given number of messages from queue
-    -Create method that calculates the number of messages lost in total throughout simulation because they dont fit in buffer
-    -Create method that calculates the largest number of messages lost in any one microsecond instance because they dont fit in buffer
+		*Create buffer in a queue based on input buffer size
+		*Create method that adds given number of messages to the queue
+		*Create method that pops given number of messages from queue
+    *Create method that calculates the number of messages lost in total throughout simulation because they 'dont' fit in buffer
+    *Create method that calculates the largest number of messages lost in any one microsecond instance because they don't fit in buffer
 
-	Clock:
+	Clock: (final priority)
 		-completely change to use counted time (infinite while and counter) instead of real time
 		-create method that starts clock (while loop)
 		-create method that returns current microsecond
@@ -24,19 +24,20 @@ Sprint 2 Product Backlog:
     -create method to stop clock if necessary (quit)
 
 	Messages:
-    -create message class that creates a new message object with parameters entry time and exit time that takes in a message entry time as argument
-		-create method that takes a message exit time as an argument
-		-create method that when called returns the latency (exit-entry time) for that message
+    *create message class that creates a new message object with parameters entry time and exit time that takes in a message entry time as argument
+		*create method that takes a message exit time as an argument
+		*create method that when called returns the latency (exit-entry time) for that message
 
 	Simulation:
-		-read CSV file after asking user what file to be used
-    -create buffer with given bufferSize from command line arg
+		*read CSV file after asking user what file to be used
+    *create buffer with given bufferSize from command line arg
     -start clock that continuously runs unless stopped
     -calculate number of messages being added and processed per microsecond (have to carry fractional parts)
     -run method to add new messages to the buffer every microsecond
     -run method to process new messages from the buffer every microsecond
     -print every second how many messages have been processed in the last second and how many are currently in buffer *goal not necessary
     -create storage unit to store average message latency for each message
+    -return array of message percentile (50,75,90,99)
 
 	Test Plan:
 		-Must have defined test cases that are necessary for testing with expected results

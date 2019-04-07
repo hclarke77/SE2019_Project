@@ -57,7 +57,9 @@ public void processMessages(long rate, long currTime) {
         x.setOut(time);
         System.out.println(x.calculateTravel());
     }
-  } 
+  } else {
+    System.out.println("No messages to be processed.");
+  }
 
 }
 

@@ -13,6 +13,7 @@ public class Simulation {
     Buffer inputThread = new Buffer(bufferSize);
     //System.out.println(inputThread.qMess);
 
+
 	  //Asks user for file name they wish to simulate
 	  Scanner scanner = new Scanner (System.in);
 	  System.out.println("Enter your File name (must be CSV): ");
@@ -35,20 +36,16 @@ public class Simulation {
     //in time this will all go in clock class - once i figure it out
     long microRemainderRate = 0;
     long microSecondNumber = 0;
-    boolean state = true;
 
-    while (state == true) {
-    //for (int j=0; j<1000; j++) {
-      currTime = microSecondNumber;
+    for (int j=0; j<1000; j++) {
+      //currTime = microsecond
       if (currTime % minuteDivide == 0) {
         currentSecRate = Long.valueOf(ratesList[listIndex]);
         currentMicroRate = currentSecRate / 1000000;
         microRemainderRate = currentSecRate % 1000000;
         listIndex += 1;
       }
-      
-      
-      
+
       if (currTime % 1000000 == 0){
         microSecondNumber = 0;
       }
