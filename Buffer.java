@@ -15,7 +15,7 @@ long numberLost;
 long maxNumberLost;
 long totalNumberLost;
 Queue<Message> qMess;
-
+Latency lat;
 
 public Buffer(long size) {
 
@@ -25,6 +25,7 @@ public Buffer(long size) {
   maxNumberLost = 0;
   totalNumberLost = 0;
   totalMessages = 0;
+  lat = new Latency(bufferSize);
 
 }
 
@@ -61,6 +62,7 @@ public void processMessages(long rate, long currTime) {
       Message x = qMess.remove();
       x.setOut(time);
       averageLat += x.calculateTravel();
+      lat.addLat(x.calculateTravel());
     }
   }
 
@@ -75,7 +77,10 @@ public void processMessages(long rate, long currTime) {
   }
 }
 */
-
+public static void callLatReader() {
+  lat.LatReader();
+}
+  
 public float averageLatency() {
 
   return (float)averageLat / totalMessages;
