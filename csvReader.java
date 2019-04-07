@@ -19,19 +19,18 @@ public class csvReader {
 
 
     public int[] exportVariables() {
-	int i = 0;
-	int[] records = new int[100000];
+	     int i = 0;
+	     int[] records = new int[400];
        try (Scanner scanner = new Scanner(new File(csvFilename));) {
           scanner.useDelimiter(",").nextLine();
             while (scanner.hasNextLine()) {
 		            //String line = scanner.nextLine();
                 records[i] = Integer.valueOf(getRecordFromLine(scanner.nextLine()).get(1));
-	       i += 1;
+	              i += 1;
             }
 
             return records;
         } catch (FileNotFoundException e) {
-
           return records;
 	     }
     }

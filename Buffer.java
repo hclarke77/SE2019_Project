@@ -9,6 +9,8 @@ long time;
 long messagesProcessed;
 long numMessages;
 long bufferSize;
+int averageLat;
+long totalMessages;
 long numberLost;
 long maxNumberLost;
 long totalNumberLost;
@@ -22,20 +24,23 @@ public Buffer(long size) {
   //qMess.add(new Message(size));
   maxNumberLost = 0;
   totalNumberLost = 0;
+  totalMessages = 0;
 
 }
 
 
 public void addMessages(long rate, long currTime) {
   time = currTime;
-  System.out.println("Buffer Current Time Is: " + time);
+  //System.out.println("Buffer Current Time Is: " + time);
   numMessages = rate;
   numberLost = 0;
   for(int i=0;i<numMessages;i++) {
     if (qMess.size() < bufferSize) {
       qMess.add(new Message(time));
+      totalMessages += 1;
     }
     else {
+      //System.out.println("Losing Messages");
       numberLost += 1;
       totalNumberLost += 1;
       if (numberLost >= maxNumberLost) {
@@ -43,22 +48,20 @@ public void addMessages(long rate, long currTime) {
       }
     }
   }
-  System.out.println("Queue Current Size Is: " + qMess.size());
+  //System.out.println("Queue Current Size Is: " + qMess.size());
 }
 
 
 public void processMessages(long rate, long currTime) {
   time = currTime;
   messagesProcessed = rate;
-  System.out.println(qMess.size());
-  if (qMess.size() > 0){
-    for(int i=0;i<numMessages;i++) {
-        Message x = qMess.remove();
-        x.setOut(time);
-        System.out.println(x.calculateTravel());
+  //System.out.println(qMess.size());
+  for(int i=0;i<messagesProcessed;i++) {
+    if (qMess.size() > 0){
+      Message x = qMess.remove();
+      x.setOut(time);
+      averageLat += x.calculateTravel();
     }
-  } else {
-    System.out.println("No messages to be processed.");
   }
 
 }
@@ -72,6 +75,15 @@ public void processMessages(long rate, long currTime) {
   }
 }
 */
+
+public float averageLatency() {
+
+  return (float)averageLat / totalMessages;
+}
+
+public long countMessages() {
+  return  totalMessages;
+}
 
 public long maxNumberDropped(){
 
