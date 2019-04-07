@@ -11,7 +11,8 @@ public class Simulation {
     long microProcessSpeed = java.lang.Math.round(processSpeed * .000001);
 
     Buffer inputThread = new Buffer(bufferSize);
-    System.out.println(inputThread.qMess);
+    //System.out.println(inputThread.qMess);
+
 
 	  //Asks user for file name they wish to simulate
 	  Scanner scanner = new Scanner (System.in);
@@ -23,7 +24,7 @@ public class Simulation {
 	  csvReader reader = new csvReader(Filename);
 
     //stores list of rates - one minute after another
-	  List<Integer> ratesList = reader.exportVariables();
+    int[] ratesList = reader.exportVariables();
 
 
     long currTime = 0;
@@ -36,16 +37,15 @@ public class Simulation {
     long microRemainderRate = 0;
     long microSecondNumber = 0;
 
-
-    //while (true) {
     for (int j=0; j<1000; j++) {
       //currTime = microsecond
       if (currTime % minuteDivide == 0) {
-        currentSecRate = Long.valueOf(ratesList.get(listIndex));
+        currentSecRate = Long.valueOf(ratesList[listIndex]);
         currentMicroRate = currentSecRate / 1000000;
         microRemainderRate = currentSecRate % 1000000;
         listIndex += 1;
       }
+
       if (currTime % 1000000 == 0){
         microSecondNumber = 0;
       }
@@ -66,9 +66,12 @@ public class Simulation {
 
         microSecondNumber+= 1;
       }
-
-      currTime += 1;
-
+      
+      if (inputThread.qMess.isEmpty() == true) {
+	state = false;
+	}
+	  currTime += 1;
+	
     }
 
   }

@@ -63,6 +63,15 @@ public void processMessages(long rate, long currTime) {
 
 }
 
+/*public boolean isEmpty() {
+
+  if (qMess.size() > 0) {
+  return false;
+  } else {
+  return true;
+  }
+}
+*/
 
 public long maxNumberDropped(){
 
