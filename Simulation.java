@@ -30,7 +30,7 @@ public class Simulation {
     //stores list of rates - one minute after another
     int[] ratesList = reader.exportVariables();
 
-    System.out.println(ratesList.length);
+    //System.out.println(ratesList.length);
     long currTime = 0;
     int listIndex = 0;
     long minuteDivide = (60000000);
@@ -96,12 +96,16 @@ public class Simulation {
         break;
       }
     }
+    if (inputThread.qMess.size() > 0) {
+
+    }
     long totalMessagesUsed = inputThread.countMessages();
     avThroughput = (float)totalMessagesUsed / secondsCompleted;
     System.out.println("Average Throughput: " + avThroughput);
     System.out.println("Average Latency: " + inputThread.averageLatency());
     System.out.println("Total Messages Lost: " + inputThread.totalNumberDropped());
     System.out.println("Max Messages Lost: " + inputThread.maxNumberDropped());
+    System.out.println("Messages Left: " + inputThread.qMess.size());
   }
 
 }
