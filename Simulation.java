@@ -9,6 +9,10 @@ public class Simulation {
 	  long bufferSize = Long.valueOf(args[0]);
 	  double processSpeed = Double.valueOf(args[1]);
     long microProcessSpeed = java.lang.Math.round(processSpeed * .000001);
+    long microRemainderProcess = (long)processSpeed % 1000000;
+    System.out.println("Micro Remainder: " + microRemainderProcess);
+    System.out.println("Micro Process Speed: " + microProcessSpeed);
+
 
     Buffer inputThread = new Buffer(bufferSize);
     //System.out.println(inputThread.qMess);
@@ -26,58 +30,81 @@ public class Simulation {
     //stores list of rates - one minute after another
     int[] ratesList = reader.exportVariables();
 
-
+    System.out.println(ratesList.length);
     long currTime = 0;
     int listIndex = 0;
-    long minuteDivide = 6 * 10^7;
-    int averageLatency;
+    long minuteDivide = (60000000);
+    long secondsCompleted = 0;
+    long minutesCompleted=0;
     long currentSecRate = 0; //= Long.valueOf(ratesList.get(listIndex));
     long currentMicroRate = 0; //= currentSecRate / 1000000;
     //in time this will all go in clock class - once i figure it out
     long microRemainderRate = 0;
     long microSecondNumber = 0;
+    float avThroughput;
 
-    for (int j=0; j<1000; j++) {
+    //for (int j=0; j<300000000; j++) {
+    while (listIndex < ratesList.length) {
       //currTime = microsecond
       if (currTime % minuteDivide == 0) {
         currentSecRate = Long.valueOf(ratesList[listIndex]);
         currentMicroRate = currentSecRate / 1000000;
         microRemainderRate = currentSecRate % 1000000;
         listIndex += 1;
+        minutesCompleted += 1;
+        System.out.println("Minutes Completed: " + minutesCompleted);
+        currTime = 0;
       }
 
       if (currTime % 1000000 == 0){
+        secondsCompleted += 1;
         microSecondNumber = 0;
       }
 
       if (currTime % 1 == 0)
       {
         if (microSecondNumber < microRemainderRate){
+          //System.out.println("System Current Time: " + currTime);
           inputThread.addMessages((currentMicroRate+1), currTime);
+          if (microSecondNumber < microRemainderProcess) {
+            inputThread.processMessages((microProcessSpeed+1), currTime);
+          } else {
+            inputThread.processMessages(microProcessSpeed, currTime);
+          }
           //inputThread.processMessages(microProcessSpeed, currTime);
-          System.out.println(currentMicroRate);
-          System.out.println(microRemainderRate);
+          //System.out.println("Current Micro Rate: " + currentMicroRate);
+          //System.out.println("Current Remainder Rate: " + microRemainderRate);
         } else {
+          //System.out.println("System Current Time: " + currTime);
           inputThread.addMessages(currentMicroRate, currTime);
+          if (microSecondNumber < microRemainderProcess) {
+            inputThread.processMessages((microProcessSpeed+1), currTime);
+          } else {
+            inputThread.processMessages(microProcessSpeed, currTime);
+          }
           //inputThread.processMessages(microProcessSpeed, currTime);
-          System.out.println(currentMicroRate);
-          System.out.println(microRemainderRate);
+          //System.out.println("Current Micro Rate: " + currentMicroRate);
+          //System.out.println("Current Remainder Rate: " + microRemainderRate);
         }
+
 
         microSecondNumber+= 1;
       }
-      
-      if (inputThread.qMess.isEmpty() == true) {
-	state = false;
-	}
-	  currTime += 1;
-	
+  	  currTime += 1;
+      if (minutesCompleted > 600)
+      {
+        break;
+      }
     }
-
+    long totalMessagesUsed = inputThread.countMessages();
+    avThroughput = (float)totalMessagesUsed / secondsCompleted;
+    System.out.println("Average Throughput: " + avThroughput);
+    System.out.println("Average Latency: " + inputThread.averageLatency());
+    System.out.println("Total Messages Lost: " + inputThread.totalNumberDropped());
+    System.out.println("Max Messages Lost: " + inputThread.maxNumberDropped());
   }
 
 }
-
 
 
 
