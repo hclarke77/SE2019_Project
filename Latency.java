@@ -72,6 +72,14 @@ public class Latency {
             }
 
             int[] finalarr = finalList.stream().mapToInt(Integer::intValue).toArray();
+            int half = finalarr.length/2;
+            int seventyfive = half + half/2;
+            double ninty = finalarr.length/1.111;
+            double nintynine = finalarr.length/1.0001;
+            System.out.println("Fifty percent: " + finalarr[half]);
+            System.out.println("Seventy-Five percent: " + finalarr[seventyfive]);
+            System.out.println("Ninty percent: " + finalarr[(int) ninty]);
+            System.out.println("Ninty-nine percent: " + finalarr[(int) nintynine]);
             mergeSort(finalarr,finalarr.length);
             out.write(Arrays.toString(finalarr));
         }
