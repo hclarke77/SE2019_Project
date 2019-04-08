@@ -1,0 +1,12 @@
+Test Plan
+Software Engineering Team 1
+
+1.) Test Incorrect Files - specifically filenames that don't exist.
+
+2.) Test Rates - make sure all rates from csv file are received correctly
+		 and are positive.
+
+3.) Test Simulation - negative values and letters into buffer and processor speed
+
+**Number Format Exception thrown for buffer and speed when letter was used**
+
