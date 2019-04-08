@@ -20,7 +20,7 @@ public class csvReader {
 
     public int[] exportVariables() {
 	     int i = 0;
-	     int[] records = new int[400];
+	     int[] records = new int[20];
        try (Scanner scanner = new Scanner(new File(csvFilename));) {
           scanner.useDelimiter(",").nextLine();
             while (scanner.hasNextLine()) {

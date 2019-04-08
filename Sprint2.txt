@@ -1,22 +1,22 @@
 Sprint 2 Product Backlog:
 
-  Fix Requirements not met for Sprint 1 (not including simulation per second as sprint 2 changes this to per microsecond):
+  *Fix Requirements not met for Sprint 1 (not including simulation per second as sprint 2 changes this to per microsecond):
     -Change throughput into average throughput/second
     -Change latency into average latency per message not messages per minute as latency
     -Fix to actually simulate system with timings
 
-  CSVReader:
+  *CSVReader:
     *change to export CSV into a single array of rates instead of the complicated list of lists
     *have methods to do everything in CSV not in buffer
 
-	Buffer:
+	*Buffer:
 		*Create buffer in a queue based on input buffer size
 		*Create method that adds given number of messages to the queue
 		*Create method that pops given number of messages from queue
     *Create method that calculates the number of messages lost in total throughout simulation because they 'dont' fit in buffer
     *Create method that calculates the largest number of messages lost in any one microsecond instance because they don't fit in buffer
 
-	Clock: (final priority)
+	*Clock: (final priority)
 		-completely change to use counted time (infinite while and counter) instead of real time
 		-create method that starts clock (while loop)
 		-create method that returns current microsecond
@@ -28,7 +28,7 @@ Sprint 2 Product Backlog:
 		*create method that takes a message exit time as an argument
 		*create method that when called returns the latency (exit-entry time) for that message
 
-	Simulation:
+	*Simulation:
 		*read CSV file after asking user what file to be used
     *create buffer with given bufferSize from command line arg
     -start clock that continuously runs unless stopped
@@ -39,11 +39,11 @@ Sprint 2 Product Backlog:
     -create storage unit to store average message latency for each message
     -return array of message percentile (50,75,90,99)
 
-	Test Plan:
+	*Test Plan:
 		-Must have defined test cases that are necessary for testing with expected results
     -Must be written in language where people can replicate the tests - very specific
 
-	Test Spec:
+	*Test Spec:
     -Runs tests specified in test plan
     -If all is well - prints "Tests executed successfully with no errors"
     -If all is not well - prints where the error occurred - what test and what class.
