@@ -12,7 +12,7 @@ public class Simulation {
     long microRemainderProcess = (long)processSpeed % 1000000;
     System.out.println("Micro Remainder: " + microRemainderProcess);
     System.out.println("Micro Process Speed: " + microProcessSpeed);
-    System.out.println("Calculated Process Speed: " + (processSpeed / 1000000));
+    //System.out.println("Calculated Process Speed: " + (processSpeed / 1000000));
 
 
     Buffer inputThread = new Buffer(bufferSize);
@@ -47,7 +47,7 @@ public class Simulation {
 
     //for (int j=0; j<300000000; j++) {
 
-    while (listIndex < 2 ) { //ratesList.length) {
+    while (listIndex < ratesList.length) {
       //currTime = microsecond
       if (currTime % minuteDivide == 0) {
         currentSecRate = Long.valueOf(ratesList[listIndex]);
@@ -103,7 +103,7 @@ public class Simulation {
     System.out.println("Finishing Emptying Queue of " + inputThread.qMess.size() +" Messages");
     while (inputThread.qMess.size() != 0) {
       if (currTime % 1000000 == 0){
-        System.out.println("Seconds Completed: " + secondsCompleted);
+        //System.out.println("Seconds Completed: " + secondsCompleted);
         secondsCompleted += 1;
         microSecondNumber = 0;
       }
@@ -127,14 +127,14 @@ public class Simulation {
     System.out.println("Average Latency: " + avLatency + " seconds");
     System.out.println("Total Messages Lost: " + inputThread.totalNumberDropped());
     System.out.println("Max Messages Lost: " + inputThread.maxNumberDropped());
-    System.out.println("Messages Left: " + inputThread.qMess.size());
+    //System.out.println("Messages Left: " + inputThread.qMess.size());
   }
 
 }
 
 
 
-
+//Unneeded code below
 /*
     /*testing if it got all values
 	  for (int i=0; i<vars.size();i++) {
