@@ -21,7 +21,7 @@ public class Clock {
 	}
 	public void runClock() {
 		currTime = startTime;
-		while (True) {
+		while (true) {
 			currTime = currTime+1;
 			if (currTime%1 == 0) {
 				this.notify();

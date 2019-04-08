@@ -72,7 +72,17 @@ public class Latency {
             }
 
             int[] finalarr = finalList.stream().mapToInt(Integer::intValue).toArray();
+            int half = finalarr.length/2;
+            int seventyfive = half + half/2;
+            double ninty = finalarr.length/1.111;
+            double nintynine = finalarr.length/1.01;
+            double nintyninenine = finalarr.length/1.0001;
             mergeSort(finalarr,finalarr.length);
+            System.out.println("50% Latency: " + finalarr[half] + " microseconds = " + (finalarr[half]/1000000)+ " seconds");
+            System.out.println("75% Latency: " + finalarr[seventyfive] + " microseconds = " + (finalarr[seventyfive]/1000000)+ " seconds");
+            System.out.println("90% Latency: " + finalarr[(int) ninty] + " microseconds = " + (finalarr[(int) ninty]/1000000)+ " seconds");
+            System.out.println("99% Latency: " + finalarr[(int) nintynine] + " microseconds = " + (finalarr[(int) nintynine]/1000000)+ " seconds");
+            System.out.println("99.9% Latency: " + finalarr[(int) nintyninenine] + " microseconds = " + (finalarr[(int) nintyninenine]/1000000)+ " seconds\n");
             out.write(Arrays.toString(finalarr));
         }
         catch (IOException e) {

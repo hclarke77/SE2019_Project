@@ -10,8 +10,8 @@ public class Simulation {
 	  long processSpeed = Long.valueOf(args[1]);
     long microProcessSpeed = (long) processSpeed / 1000000;
     long microRemainderProcess = (long)processSpeed % 1000000;
-    System.out.println("Micro Remainder: " + microRemainderProcess);
-    System.out.println("Micro Process Speed: " + microProcessSpeed);
+    //System.out.println("Micro Remainder: " + microRemainderProcess);
+    //System.out.println("Micro Process Speed: " + microProcessSpeed);
     //System.out.println("Calculated Process Speed: " + (processSpeed / 1000000));
 
 
@@ -126,7 +126,7 @@ public class Simulation {
     avThroughput = (float)totalMessagesUsed / secondsCompleted;
     avLatency = inputThread.averageLatency()/1000000;
     System.out.println("Average Throughput: " + avThroughput);
-    System.out.println("Average Latency: " + avLatency + " seconds");
+    System.out.println("Average Latency: " + avLatency + " seconds\n");
     System.out.println("Total Messages Lost: " + inputThread.totalNumberDropped());
     System.out.println("Max Messages Lost: " + inputThread.maxNumberDropped());
     //System.out.println("Messages Left: " + inputThread.qMess.size());
