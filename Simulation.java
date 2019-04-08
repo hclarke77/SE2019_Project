@@ -100,7 +100,9 @@ public class Simulation {
       }
     }
     //second while loop to empty queue after first while loop runs through all time
-    System.out.println("Finishing Emptying Queue of " + inputThread.qMess.size() +" Messages");
+    if (inputThread.qMess.size() != 0) {
+      System.out.println("Finishing Emptying Queue of " + inputThread.qMess.size() +" Messages");
+    }
     while (inputThread.qMess.size() != 0) {
       if (currTime % 1000000 == 0){
         //System.out.println("Seconds Completed: " + secondsCompleted);
