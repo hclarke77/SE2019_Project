@@ -76,10 +76,10 @@ public class Latency {
             int seventyfive = half + half/2;
             double ninty = finalarr.length/1.111;
             double nintynine = finalarr.length/1.0001;
-            System.out.println("Fifty percent: " + finalarr[half]);
-            System.out.println("Seventy-Five percent: " + finalarr[seventyfive]);
-            System.out.println("Ninty percent: " + finalarr[(int) ninty]);
-            System.out.println("Ninty-nine percent: " + finalarr[(int) nintynine]);
+            System.out.println("50% Latency: " + finalarr[half] + " microseconds");
+            System.out.println("75% Latency: " + finalarr[seventyfive] + " microseconds");
+            System.out.println("Ninety% Latency: " + finalarr[(int) ninty] + " microseconds");
+            System.out.println("99% Latency: " + finalarr[(int) nintynine] + " microseconds");
             mergeSort(finalarr,finalarr.length);
             out.write(Arrays.toString(finalarr));
         }
