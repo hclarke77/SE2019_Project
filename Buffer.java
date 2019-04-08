@@ -15,7 +15,7 @@ long numberLost;
 long maxNumberLost;
 long totalNumberLost;
 Queue<Message> qMess;
-public static Latency lat;
+Latency lat;
 
 public Buffer(long size) {
 
@@ -88,7 +88,7 @@ public void processMessages(long rate, long currTime) {
   }
 }
 */
-public static void callLatReader() {
+public void callLatReader() {
   try{
     lat.LatReader();
   } catch(IOException e) {
