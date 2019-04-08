@@ -24,10 +24,10 @@ public class Latency {
             BuffedOut =  new BufferedWriter(new FileWriter("out.txt",true));
 
             if (count == buffSize) {
-                System.out.println("Array full");
-                System.out.println("Before Sorting: " + Arrays.toString(arr));
+                //System.out.println("Array full");
+                //System.out.println("Before Sorting: " + Arrays.toString(arr));
                 mergeSort(arr,count);
-                System.out.println("After Sorting: " + Arrays.toString(arr));
+                //System.out.println("After Sorting: " + Arrays.toString(arr));
                 String StrArray = Arrays.toString(arr);
                 StrArray = StrArray.replace("[","");
                 StrArray = StrArray.replace("]","");
@@ -131,7 +131,7 @@ public class Latency {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    /*public static void main(String[] args) throws IOException {
         Latency lat = new Latency(20);
         for (int i = 0; i < 20; i++) {
             Random rand = new Random();
@@ -141,5 +141,5 @@ public class Latency {
         System.out.println("Starting LatReader: ");
         File out = new File("out.txt");
         lat.LatReader();
-    }
+    }*/
 }

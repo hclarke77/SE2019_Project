@@ -47,7 +47,7 @@ public class Simulation {
 
     //for (int j=0; j<300000000; j++) {
 
-    while (listIndex < ratesList.length) {
+    while (listIndex < 25) { // ratesList.length) {
       //currTime = microsecond
       if (currTime % minuteDivide == 0) {
         currentSecRate = Long.valueOf(ratesList[listIndex]);
@@ -120,7 +120,7 @@ public class Simulation {
     }
 
     long totalMessagesUsed = inputThread.countMessages();
-    //inputThread.callLatReader();
+    inputThread.callLatReader();
     avThroughput = (float)totalMessagesUsed / secondsCompleted;
     avLatency = inputThread.averageLatency()/1000000;
     System.out.println("Average Throughput: " + avThroughput);
