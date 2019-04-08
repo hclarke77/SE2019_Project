@@ -47,7 +47,7 @@ public class Simulation {
 
     //for (int j=0; j<300000000; j++) {
 
-    while (listIndex < ratesList.length) {
+    while (listIndex < 25) { // ratesList.length) {
       //currTime = microsecond
       if (currTime % minuteDivide == 0) {
         currentSecRate = Long.valueOf(ratesList[listIndex]);
@@ -100,7 +100,9 @@ public class Simulation {
       }
     }
     //second while loop to empty queue after first while loop runs through all time
-    System.out.println("Finishing Emptying Queue of " + inputThread.qMess.size() +" Messages");
+    if (inputThread.qMess.size() != 0) {
+      System.out.println("Finishing Emptying Queue of " + inputThread.qMess.size() +" Messages");
+    }
     while (inputThread.qMess.size() != 0) {
       if (currTime % 1000000 == 0){
         //System.out.println("Seconds Completed: " + secondsCompleted);
@@ -120,7 +122,7 @@ public class Simulation {
     }
 
     long totalMessagesUsed = inputThread.countMessages();
-    //inputThread.callLatReader();
+    inputThread.callLatReader();
     avThroughput = (float)totalMessagesUsed / secondsCompleted;
     avLatency = inputThread.averageLatency()/1000000;
     System.out.println("Average Throughput: " + avThroughput);
