@@ -43,6 +43,7 @@ public class Simulation {
     long microRemainderRate = 0;
     long microSecondNumber = 0;
     float avThroughput;
+    float avLatency;
 
     //for (int j=0; j<300000000; j++) {
 
@@ -121,8 +122,9 @@ public class Simulation {
     long totalMessagesUsed = inputThread.countMessages();
     //inputThread.callLatReader();
     avThroughput = (float)totalMessagesUsed / secondsCompleted;
+    avLatency = inputThread.averageLatency()/1000000;
     System.out.println("Average Throughput: " + avThroughput);
-    System.out.println("Average Latency: " + inputThread.averageLatency() + " microseconds");
+    System.out.println("Average Latency: " + avLatency + " seconds");
     System.out.println("Total Messages Lost: " + inputThread.totalNumberDropped());
     System.out.println("Max Messages Lost: " + inputThread.maxNumberDropped());
     System.out.println("Messages Left: " + inputThread.qMess.size());
