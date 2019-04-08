@@ -9,7 +9,8 @@ javac *.java
 Run Instructions:
 
 java Simulation bufferSize processorSpeed
+
 *When prompted for csvFile enter 'FeedRates.csv'*
 
 
-SHA Hash: 
+SHA Hash: 700270863e07c845c96a91e64b54ab86956c2f70
