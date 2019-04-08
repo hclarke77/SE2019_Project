@@ -47,7 +47,7 @@ public class Simulation {
 
     //for (int j=0; j<300000000; j++) {
 
-    while (listIndex < 25) { // ratesList.length) {
+    while (listIndex < ratesList.length) {
       //currTime = microsecond
       if (currTime % minuteDivide == 0) {
         currentSecRate = Long.valueOf(ratesList[listIndex]);
