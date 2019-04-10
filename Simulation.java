@@ -130,7 +130,7 @@ public class Simulation {
     System.out.println("Average Throughput: " + avThroughput);
     System.out.println("Average Latency: " + avLatency + " seconds\n");
     System.out.println("Total Messages Lost: " + inputThread.totalNumberDropped());
-    System.out.println("Max Messages Lost: " + inputThread.maxNumberDropped());
+    System.out.println("Max Messages Lost (Per Microsecond): " + inputThread.maxNumberDropped());
     //System.out.println("Messages Left: " + inputThread.qMess.size());
   }
 
