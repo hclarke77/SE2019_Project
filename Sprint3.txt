@@ -1,10 +1,10 @@
 Sprint 3 Product Backlog:
 
 Story Points (1 takes 1 hour):
-Total Story Points    Story Points Completed      Task to be Done
+Date Added  Status  User Story # Supported   Total Story Points  Story Points Completed  Task to be Done  Owner   Date Completed
 
 Simulation Class:
-  (4) (0) Give the ability to process per microsecond rates as well as per second rates
+(4) (0) Give the ability to process per microsecond rates as well as per second rates
       (1) (0) Create Method to ask user if the inputted file is per second rates or per microsecond and then choose correct simul
       (2) (0) Create second instance of simulation that updates rate every microsecond from ratesList rather than every minute
       (1) (0) Verify all other functionality is maintained and the correct rate is being used on the correct microsecond
