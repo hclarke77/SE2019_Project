@@ -11,7 +11,7 @@ Simulation Class:
   (8) (0) Implement Task Parallelism - split Simulation processing into an "Assembly Line"
       (1) (0) Create a method to specify how many threads will be used (ask the user)
       (5) (0) Implement Task Parallelism in the simulation by splitting it into threads to process more messages.
-      (2) (0) Catch all threading errors --Error Checking (Unit Testing) to verify it works perfectly 
+      (2) (0) Catch all threading errors --Error Checking (Unit Testing) to verify it works perfectly
 
 csvReader:
   (3) (0) Change csvReader from a set array length to a variable array length based on the length of the file
@@ -19,7 +19,9 @@ csvReader:
       (1) (0) Test method creation with different sized files
 
 Testing:
-  (2) (0) Create Manual Test Cases and Expected results
+  (4) (0) Create Manual Test Cases and Expected results
+      (2) (0) Pick range of manual rates to be put into the file and manual processing speeds and buffer sizes
+      (2) (0) Calculate the expected results using these manual rates and input parameters.
   (3) (0) Create File that runs manual test cases and verifies expected results
       (1) (0) Have the file run Simulation for each test case when Tests.java is run
       (1) (0) Has the file run the same numbers for multiple processing units (file is a loop that runs 3 times, 1 unit etc)
