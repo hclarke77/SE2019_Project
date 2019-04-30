@@ -2,6 +2,7 @@ import java.io.*;
 import java.util.*;
 import java.lang.*;
 
+
 public class Simulation {
 
   public static void main(String[] args) {
@@ -47,7 +48,7 @@ public class Simulation {
 
     //for (int j=0; j<300000000; j++) {
 
-    while (listIndex < 25) { // ratesList.length) {
+    while (listIndex < ratesList.length) {
       //currTime = microsecond
       if (currTime % minuteDivide == 0) {
         currentSecRate = Long.valueOf(ratesList[listIndex]);
@@ -130,6 +131,16 @@ public class Simulation {
     System.out.println("Total Messages Lost: " + inputThread.totalNumberDropped());
     System.out.println("Max Messages Lost: " + inputThread.maxNumberDropped());
     //System.out.println("Messages Left: " + inputThread.qMess.size());
+    
+    File file = new File("out.txt");
+        if(file.delete()){
+            System.out.println("file.txt File deleted from Project root directory");
+        }else System.out.println("File file.txt doesn't exist in the project root directory");
+        
+	File file2 = new File("SortedOut.txt");
+		if(file2.delete()){
+			System.out.println("file.txt File deleted from Project root directory");
+		}else System.out.println("File file.txt doesn't exist in the project root directory");
   }
 
 }
