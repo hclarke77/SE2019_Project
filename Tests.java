@@ -46,6 +46,38 @@ public class Tests {
   System.out.println("If this is the only message you see, the Tests all ran without error.");
 
   }
+  
+  // Using different data test simulation class
+  public void simuTest() {
+	  System.out.println("Enter times your want test");
+	  Scanner scanner = new Scanner(System.in);
+	  int n = scanner.nextInt();
+	  
+	  int[] bufferSize = new int[n];
+	  int[] processorSpeed = new int[n];
+	  
+	  for(int i = 0; i < n; i++) {
+		  System.out.println("Please enter buffer size and processor speed");
+		  bufferSize[i] = scanner.nextInt();
+		  processorSpeed[i] = scanner.nextInt();
+	  }
+	  
+	  scanner.close();
+	  
+  }
 
-
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 }
