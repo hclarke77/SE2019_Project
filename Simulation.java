@@ -31,6 +31,8 @@ public class Simulation {
     //stores list of rates - one minute after another
     int[] ratesList = reader.exportVariables();
 
+    System.out.println("The Simulation will run for " + ratesList.length +" minutes based on the CSV File Length given\n");
+
     //System.out.println(ratesList.length);
     long currTime = 0;
     int listIndex = 0;

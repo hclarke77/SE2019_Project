@@ -18,9 +18,35 @@ public class csvReader {
     }
 
 
+    public int getLengthOfFile(String f) {
+      int rowCount = 0;
+      try (Scanner scanner = new Scanner(new File(csvFilename));) {
+        scanner.useDelimiter(",").nextLine();
+        while (scanner.hasNextLine()) {
+          rowCount += 1;
+          String line = scanner.nextLine();
+          //System.out.println("There are: " + rowCount + " rows");
+        }
+
+      } catch (FileNotFoundException e) {
+        System.out.println("Error opening file.");
+        return rowCount;
+      }
+      //System.out.println("There are: " + rowCount + " rows");
+      return rowCount;
+
+    }
+
+    /*
+
+
+    */
     public int[] exportVariables() {
 	     int i = 0;
-	     int[] records = new int[400];
+       int rowCount;
+       rowCount = getLengthOfFile(csvFilename);
+       int[] records = new int[rowCount];
+       //System.out.println(records.length);
        try (Scanner scanner = new Scanner(new File(csvFilename));) {
           scanner.useDelimiter(",").nextLine();
             while (scanner.hasNextLine()) {
@@ -28,7 +54,7 @@ public class csvReader {
                 records[i] = Integer.valueOf(getRecordFromLine(scanner.nextLine()).get(1));
 	              i += 1;
             }
-
+            //System.out.println(records.length);
             return records;
         } catch (FileNotFoundException e) {
           return records;
