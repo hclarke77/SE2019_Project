@@ -15,7 +15,7 @@ long numberLost;
 long maxNumberLost;
 long totalNumberLost;
 Queue<Message> qMess;
-
+Latency lat;
 
 public Buffer(long size) {
 
@@ -25,6 +25,11 @@ public Buffer(long size) {
   maxNumberLost = 0;
   totalNumberLost = 0;
   totalMessages = 0;
+  try {
+    lat = new Latency((int) bufferSize);
+  } catch(IOException e) {
+    e.printStackTrace();
+  }
 
 }
 
@@ -34,6 +39,9 @@ public void addMessages(long rate, long currTime) {
   //System.out.println("Buffer Current Time Is: " + time);
   numMessages = rate;
   numberLost = 0;
+  if (numMessages > 10){
+    System.out.println("Incoming Rate: " + numMessages + "\nCurrent Buff Size: " + qMess.size());
+  }
   for(int i=0;i<numMessages;i++) {
     if (qMess.size() < bufferSize) {
       qMess.add(new Message(time));
@@ -61,6 +69,11 @@ public void processMessages(long rate, long currTime) {
       Message x = qMess.remove();
       x.setOut(time);
       averageLat += x.calculateTravel();
+      try {
+        lat.addLat( ( (int) x.calculateTravel() ) );
+      } catch(IOException e) {
+        e.printStackTrace();
+      }
     }
   }
 
@@ -75,6 +88,13 @@ public void processMessages(long rate, long currTime) {
   }
 }
 */
+public void callLatReader() {
+  try{
+    lat.LatReader();
+  } catch(IOException e) {
+    e.printStackTrace();
+  }
+}
 
 public float averageLatency() {
 
