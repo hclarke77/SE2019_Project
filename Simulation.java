@@ -207,6 +207,15 @@ public class Simulation {
     } else {
       System.out.println("Please enter U (Microsecond) or M (Minute) to tell the simulation the type of input file rates.");
     }
+	File file = new File("out.txt");
+		if(file.delete()){
+		    System.out.println("file.txt File deleted from Project root directory");
+		}else System.out.println("File file.txt doesn't exist in the project root directory");
+        
+	File file2 = new File("SortedOut.txt");
+		if(file2.delete()){
+			System.out.println("file.txt File deleted from Project root directory");
+		}else System.out.println("File file.txt doesn't exist in the project root directory");
   }
 
 }
