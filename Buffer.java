@@ -40,7 +40,7 @@ public void addMessages(long rate, long currTime) {
   numMessages = rate;
   numberLost = 0;
   if (numMessages > 10){
-    System.out.println("Incoming Rate: " + numMessages + "\nCurrent Buff Size: " + qMess.size());
+    //System.out.println("Incoming Rate: " + numMessages + "\nCurrent Buff Size: " + qMess.size());
   }
   for(int i=0;i<numMessages;i++) {
     if (qMess.size() < bufferSize) {
