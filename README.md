@@ -8,9 +8,10 @@ javac *.java
 
 Run Instructions:
 
-java Simulation bufferSize processorSpeed
+java Simulation bufferSize processorSpeed typeOfFile
 
 *When prompted for csvFile enter 'FeedRates.csv'*
 
-
-SHA Hash: 700270863e07c845c96a91e64b54ab86956c2f70
+bufferSize: How many messages the input thread can hold
+processorSpeed: Depending on the input for typeOfFile- either number of messages processed per minute or per microsecond
+typeOfFile: either 'U'(microsecond) or 'M'(minute) - tells the simulation to get new rates every microsecond from the inputted CSV or every minute
