@@ -1,0 +1,66 @@
+﻿Test case with constant input rate > processing unit rate
+java Simulation 10000 100 M
+Input File: Short.csv
+Output:
+Average Throughput: 60.0
+Average Latency: 0.11930465 seconds
+
+
+Total Messages Lost: 0
+Max Messages Lost: 0
+
+
+
+
+Test case with constant input rate < processing unit rate
+java Simulation 10000 200 M
+Input File: Short.csv
+Output:
+Average Throughput: 60.0
+Average Latency: 0.0 seconds
+
+
+Total Messages Lost: 0
+Max Messages Lost: 0
+
+
+
+
+Test case with constant input rate == processing unit rate
+java Simulation 10000 150 M
+Input File: Short.csv
+Output:
+Average Throughput: 60.0
+Average Latency: 0.0 seconds
+
+
+Total Messages Lost: 0
+Max Messages Lost: 0
+
+
+
+
+Test case with decreasing input rate 
+java Simulation 10000 100 M
+Input File: Test_Sprint3_Dec.csv
+Output:
+Average Throughput: 100.0
+Average Latency: 0.07158279 seconds
+
+
+Total Messages Lost: 0
+Max Messages Lost: 0
+
+
+
+
+Test case with increasing input rate 
+java Simulation 10000 100 M
+Input File: Test_Sprint3_Inc.csv
+Output:
+        Average Throughput: 100.0
+Average Latency: 0.06628036 seconds
+
+
+Total Messages Lost: 0
+Max Messages Lost: 0
