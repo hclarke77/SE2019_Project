@@ -9,7 +9,7 @@ public class Simulation {
     long bufferSize = Long.valueOf(args[0]);
     long processSpeed = Long.valueOf(args[1]);
     char typeOfSimulation = args[2].charAt(0);
-    long numThreads = Long.valueOf(args[3]);
+    int numThreads = Integer.valueOf(args[3]);
     //System.out.println("Micro Remainder: " + microRemainderProcess);
     //System.out.println("Micro Process Speed: " + microProcessSpeed);
     //System.out.println("Calculated Process Speed: " + (processSpeed / 1000000));
@@ -221,10 +221,10 @@ public class Simulation {
 		}else System.out.println("File file.txt doesn't exist in the project root directory");
       }
   
-  else {
+  /*else {
 
-    threadBuffSize = bufferSize/numThreads;
-    threadProcessSpeed = processSpeed/numThreads;
+    long threadBuffSize = bufferSize/numThreads;
+    long threadProcessSpeed = processSpeed/numThreads;
     
     
    Scanner scanner = new Scanner (System.in);
@@ -244,32 +244,39 @@ public class Simulation {
    
    
    
+/////////////////////////////////////////////////////////////////////////////////////////
    
    
    
    
    
+   new Buffer[] bufferList;
    
-   Buffer[] bufferList;
-   
-   for (int n = 0; n < Integer.valueOf(numThreads); n++) {
+   for (int n = 0; n < bufferList.length; n++) {
      
-     bufferList.append(new Buffer(threadBuffSize));
+     bufferList[n] = new Buffer(threadBuffSize);
      
      }
      
      
-   int []
+   int[] ratesLists;
    
     //split list for each thread
-   for(int l = 0; l<ratesList.length; l++) {
-     for (int b = 0; b<bufferList.length; b++) {
+   for(int b = 0; b < numThreads; b++) {
      
-     int[] ratesLists[l]
+     int[] tempList;
+   
+     for (int l = 0; l<ratesList.length; l++) {
+    
+       tempList[l] = ratesList[l]/numThreads;
+     }
      
+     ratesLists[b] = tempList[b];
      
+     }
      
-     
+  
+  for (int x = 0; x<bufferList.length; x++) {
    
    if (typeOfSimulation == 'm' || typeOfSimulation == 'M'){
 
@@ -292,10 +299,10 @@ public class Simulation {
       float avLatency;
 
 
-      while (listIndex <= ratesList.length) {
+      while (listIndex <= (ratesList.length/numThreads)) {
         //currTime = microsecond
         if (currTime % minuteDivide == 0) {
-          currentSecRate = Long.valueOf(ratesList[listIndex-1]);
+          currentSecRate = ratesList[listIndex-1];
           //System.out.println(currentSecRate);
           currentMicroRate = currentSecRate / 1000000;
           microRemainderRate = currentSecRate % 1000000;
@@ -312,28 +319,27 @@ public class Simulation {
         if (currTime % 1 == 0)
         {
         
-        for(int x = 0; x < bufferList.length(); x++) {
         
           if (microSecondNumber < microRemainderRate){
             //System.out.println("System Current Time: " + currTime);
-            inputThread[x].addMessages((currentMicroRate+1), currTime);
+            bufferList[x].addMessages((currentMicroRate+1), currTime);
             if (microSecondNumber < microRemainderProcess) {
-              inputThread[x].processMessages((microProcessSpeed+1), currTime);
+              bufferList[x].processMessages((microProcessSpeed+1), currTime);
             } else {
-              inputThread[x].processMessages(microProcessSpeed, currTime);
+              bufferList[x].processMessages(microProcessSpeed, currTime);
             }
-            //inputThread.processMessages(microProcessSpeed, currTime);
+            //bufferList[x].processMessages(microProcessSpeed, currTime);
             //System.out.println("Current Micro Rate: " + currentMicroRate);
             //System.out.println("Current Remainder Rate: " + microRemainderRate);
           } else {
             //System.out.println("System Current Time: " + currTime);
-            inputThread[x].addMessages(currentMicroRate, currTime);
+            bufferList[x].addMessages(currentMicroRate, currTime);
             if (microSecondNumber < microRemainderProcess) {
-              inputThread[x].processMessages((microProcessSpeed+1), currTime);
+              bufferList[x].processMessages((microProcessSpeed+1), currTime);
             } else {
-              inputThread[x].processMessages(microProcessSpeed, currTime);
+              bufferList[x].processMessages(microProcessSpeed, currTime);
             }
-            //inputThread.processMessages(microProcessSpeed, currTime);
+            //bufferList[x].processMessages(microProcessSpeed, currTime);
             //System.out.println("Current Micro Rate: " + currentMicroRate);
             //System.out.println("Current Remainder Rate: " + microRemainderRate);
           }
@@ -351,10 +357,10 @@ public class Simulation {
         }
       }
       //second while loop to empty queue after first while loop runs through all time
-      if (inputThread[x].qMess.size() != 0) {
-        System.out.println("Finishing Emptying Queue " + x.toString() + " of " + inputThread[x].qMess.size() +" Messages");
+      if (bufferList[x].qMess.size() != 0) {
+        System.out.println("Finishing Emptying Queue of " + bufferList[x].qMess.size() +" Messages");
       }
-      while (inputThread[x].qMess.size() != 0) {
+      while (bufferList[x].qMess.size() != 0) {
         if (currTime % 1000000 == 0){
           System.out.println("Seconds Completed: " + secondsCompleted);
           secondsCompleted += 1;
@@ -362,9 +368,9 @@ public class Simulation {
         }
 
         if (microSecondNumber < microRemainderProcess) {
-          inputThread[x].processMessages((microProcessSpeed+1), currTime);
+          bufferList[x].processMessages((microProcessSpeed+1), currTime);
         } else {
-          inputThread[x].processMessages(microProcessSpeed, currTime);
+          bufferList[x].processMessages(microProcessSpeed, currTime);
         }
 
         microSecondNumber+= 1;
@@ -372,17 +378,18 @@ public class Simulation {
 
       }
 
-      long totalMessagesUsed = inputThread[x].countMessages();
-      inputThread[x].callLatReader();
+      long totalMessagesUsed = bufferList[x].countMessages();
+      bufferList[x].callLatReader();
       avThroughput = (float)totalMessagesUsed / secondsCompleted;
-      avLatency = inputThread.averageLatency()/1000000;
+      avLatency = bufferList[x].averageLatency()/1000000;
       System.out.println("Average Throughput: " + avThroughput);
       System.out.println("Average Latency: " + avLatency + " seconds\n");
-      System.out.println("Total Messages Lost: " + inputThread[x].totalNumberDropped());
-      System.out.println("Max Messages Lost: " + inputThread[x].maxNumberDropped());
-      //System.out.println("Messages Left: " + inputThread.qMess.size());
+      System.out.println("Total Messages Lost: " + bufferList[x].totalNumberDropped());
+      System.out.println("Max Messages Lost: " + bufferList[x].maxNumberDropped());
+      //System.out.println("Messages Left: " + bufferList[x].qMess.size());
      }
-    } else if (typeOfSimulation == 'u' || typeOfSimulation == 'U') {
+     
+     else if (typeOfSimulation == 'u' || typeOfSimulation == 'U') {
 
       System.out.println("The Simulation will run for " + ratesList.length +" microseconds based on the CSV File Length given\n");
       long microProcessSpeed = (long) processSpeed;
@@ -408,8 +415,8 @@ public class Simulation {
 
           currentMicroRate = Long.valueOf(ratesList[listIndex-1]);
           System.out.println("Microseconds Completed: " + microSecondNumber);
-          inputThread.addMessages(currentMicroRate, currTime);
-          inputThread.processMessages(microProcessSpeed, currTime);
+          bufferList[x].addMessages(currentMicroRate, currTime);
+          bufferList[x].processMessages(microProcessSpeed, currTime);
           microSecondNumber+= 1;
         }
     	  currTime += 1;
@@ -420,36 +427,39 @@ public class Simulation {
         listIndex += 1;
       }
       //second while loop to empty queue after first while loop runs through all time
-      if (inputThread.qMess.size() != 0) {
-        System.out.println("Finishing Emptying Queue of " + inputThread.qMess.size() +" Messages");
+      if (bufferList[x].qMess.size() != 0) {
+        System.out.println("Finishing Emptying Queue of " + bufferList[x].qMess.size() +" Messages");
       }
-      while (inputThread.qMess.size() != 0) {
+      while (bufferList[x].qMess.size() != 0) {
         if (currTime % 1000000 == 0){
           System.out.println("Seconds Completed: " + secondsCompleted);
           secondsCompleted += 1;
         }
 
-        inputThread.processMessages(microProcessSpeed, currTime);
+        bufferList[x].processMessages(microProcessSpeed, currTime);
 
         microSecondNumber+= 1;
         currTime += 1;
 
       }
 
-      long totalMessagesUsed = inputThread.countMessages();
-      inputThread.callLatReader();
+      long totalMessagesUsed = bufferList[x].countMessages();
+      bufferList[x].callLatReader();
       avThroughput = (float)totalMessagesUsed / secondsCompleted;
-      avLatency = inputThread.averageLatency()/1000000;
+      avLatency = bufferList[x].averageLatency()/1000000;
       System.out.println("Average Throughput: " + avThroughput);
       System.out.println("Average Latency: " + avLatency + " seconds\n");
-      System.out.println("Total Messages Lost: " + inputThread.totalNumberDropped());
-      System.out.println("Max Messages Lost: " + inputThread.maxNumberDropped());
-      //System.out.println("Messages Left: " + inputThread.qMess.size());
+      System.out.println("Total Messages Lost: " + bufferList[x].totalNumberDropped());
+      System.out.println("Max Messages Lost: " + bufferList[x].maxNumberDropped());
+      //System.out.println("Messages Left: " + bufferList[x].qMess.size());
 
 
 
 
-    } else {
+    }
+    
+    
+    else {
       System.out.println("Please enter U (Microsecond) or M (Minute) to tell the simulation the type of input file rates.");
     }
 	  File file = new File("out.txt");
@@ -461,24 +471,7 @@ public class Simulation {
 		if(file2.delete()){
 			System.out.println("file.txt File deleted from Project root directory");
 		}else System.out.println("File file.txt doesn't exist in the project root directory");
-      }
+      }*/
   }
-    
-    
-    
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   }
-}
